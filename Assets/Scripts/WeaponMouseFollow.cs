@@ -10,7 +10,9 @@ public class WeaponMouseFollow : MonoBehaviour
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private float slashAnimRotOffset = 130f;
     [SerializeField] private Transform animSpawnPointPivot;
+    [SerializeField] private float timeBetweenAttacks = 1f;
 
+    private bool isAttacking = false;
     private GameObject slashAnim;
 
     private void Update() {
@@ -37,9 +39,8 @@ public class WeaponMouseFollow : MonoBehaviour
     }
 
     private void Attack() {
-        if (Input.GetMouseButtonDown(0)) {
-            // Time.timeScale = .2f;
-            // StopAllCoroutines();
+        if (Input.GetMouseButton(0) && !isAttacking) {
+            isAttacking = true;
             myAnimator.SetTrigger("attack");
             slashAnim = Instantiate(slashAnimPrefab, PlayerController.instance.transform.position, transform.rotation);
             slashAnim.transform.SetParent(PlayerController.instance.transform);
@@ -66,15 +67,15 @@ public class WeaponMouseFollow : MonoBehaviour
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
-    
 
     // Animation Event
     public void DoneAttacking() {
-        myAnimator.SetTrigger("doneAttacking");
+        StartCoroutine(TimeBetweenAttacksCo());
     }
 
-    // private IEnumerator DoneAttackingCo() {
-    //     yield return new WaitForSeconds(1.2f);
-    //     myAnimator.SetTrigger("doneAttacking");
-    // }
+    private IEnumerator TimeBetweenAttacksCo() {
+        yield return new WaitForSeconds(timeBetweenAttacks);
+        isAttacking = false;
+    }
+
 }
