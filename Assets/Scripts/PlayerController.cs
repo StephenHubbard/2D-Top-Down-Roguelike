@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance { get; private set; }
+    public bool facingLeft = false;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private Animator myAnimator;
     [SerializeField] private SpriteRenderer mySpriteRenderer;
     [SerializeField] private TrailRenderer myTrailRenderer;
+    [SerializeField] private Transform weaponHitCollider;
 
     private Vector2 movement;
-    public bool facingLeft = false;
-
     private bool isDashing = false;
 
-    public static PlayerController instance;
 
     private void Awake() {
         instance = this;
@@ -59,9 +60,11 @@ public class PlayerController : MonoBehaviour
         if(mousePos.x < playerScreenPoint.x) {
             myAnimator.SetFloat("moveX", -1f);
             facingLeft = true;
+            weaponHitCollider.rotation = Quaternion.Euler(0, 180, 0);
         } else {
             myAnimator.SetFloat("moveX", 1f);
             facingLeft = false;
+            weaponHitCollider.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
     
@@ -90,6 +93,10 @@ public class PlayerController : MonoBehaviour
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(.2f);
         isDashing = false;
+    }
+
+    public Vector3 GetPosition() {
+        return transform.position;
     }
 
 

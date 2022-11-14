@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class MouseFollow : MonoBehaviour
 {
-    
+    public static MouseFollow instance { get; private set; }
+
+
+    private void Awake() {
+        instance = this;
+
+    }
+
     void Update()
     {
         FaceMouse();
@@ -17,6 +24,8 @@ public class MouseFollow : MonoBehaviour
 
         Vector2 direction = new Vector2(transform.position.x - mousePosition.x, transform.position.y - mousePosition.y);
 
-        transform.forward = direction;
+        transform.right = -direction;
     }
+
+    
 }
