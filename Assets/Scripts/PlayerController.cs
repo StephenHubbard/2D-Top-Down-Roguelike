@@ -18,11 +18,16 @@ public class PlayerController : MonoBehaviour
     private Vector2 movement;
     private bool isDashing = false;
 
+    private KnockBack knockBack;
+    private Stamina stamina;
+
 
     private void Awake() {
         instance = this;
-    }
 
+        knockBack = GetComponent<KnockBack>();
+        stamina = GetComponent<Stamina>();
+    }
 
     private void Update() {
         PlayerInput();
@@ -36,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     private void LateUpdate() {
     }
+
 
     private void PlayerInput() {
         if (Input.GetKey(KeyCode.W)) movement.y = +1f;
@@ -69,6 +75,8 @@ public class PlayerController : MonoBehaviour
     }
     
     private void Move() {
+        if (knockBack.ReturnGettingKnockedBack()) { return; }
+
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         
         if (myAnimator.GetFloat("moveX") < -.1f) {
@@ -79,7 +87,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Dash() {
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing) {
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && stamina.currentStamina > 0) {
+            stamina.UseStamina();
             moveSpeed = moveSpeed * dashSpeed;
             myTrailRenderer.emitting = true;
             isDashing = true;

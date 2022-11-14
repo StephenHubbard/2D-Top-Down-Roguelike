@@ -8,6 +8,7 @@ using UnityEngine;
  * */
 public class EnemyPathfindingMovement : MonoBehaviour {
 
+
     [SerializeField] private float moveSpeed = 20f;
     private Rigidbody2D myRb;
 
@@ -15,8 +16,10 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     private int currentPathIndex;
     private Vector3 moveDir;
     private Vector3 lastMoveDir;
+    private KnockBack knockBack;
 
     private void Awake() {
+        knockBack = GetComponent<KnockBack>();
         myRb = GetComponent<Rigidbody2D>();
     }
 
@@ -25,6 +28,8 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (knockBack.ReturnGettingKnockedBack()) { return; }
+
         myRb.velocity = moveDir * moveSpeed;
 
         if (moveDir.x < 0) {

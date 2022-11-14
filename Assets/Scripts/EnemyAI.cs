@@ -11,11 +11,14 @@ public class EnemyAI : MonoBehaviour
         GoingBackToStart,
     }
 
+    public float enemyKnockBackThrust = 15f;
+    public int damageDoneToHero = 1;
+
     [SerializeField] private float targetChaseRange = 5f;
+
     private EnemyPathfindingMovement pathfindingMovement;
     private Vector3 startingPosition;
     private Vector3 roamPosition;
-
     private State state;
 
     private void Awake() {
@@ -27,6 +30,7 @@ public class EnemyAI : MonoBehaviour
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
     }
+   
 
     private void Update() {
         switch (state)
@@ -42,7 +46,7 @@ public class EnemyAI : MonoBehaviour
             }
             FindTarget();
             break;
-            
+
         case State.ChaseTarget:
             pathfindingMovement.MoveTo(PlayerController.instance.GetPosition());
 

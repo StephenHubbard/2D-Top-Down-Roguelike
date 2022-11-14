@@ -11,13 +11,15 @@ GameObject:
   - component: {fileID: 2348738076806015044}
   - component: {fileID: 2348738076806015046}
   - component: {fileID: 2348738076806015041}
+  - component: {fileID: 9075198941696673241}
+  - component: {fileID: 8021370137648839160}
   - component: {fileID: 2348738076806015045}
   - component: {fileID: 2348738076806015050}
   - component: {fileID: 2348738076806015051}
   - component: {fileID: 2348738076806015047}
   m_Layer: 0
   m_Name: Goblin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,6 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 848c64a9041e5704baa5d25c734d491a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyKnockBackThrust: 15
+  damageDoneToHero: 1
   targetChaseRange: 7
 --- !u!114 &2348738076806015041
 MonoBehaviour:
@@ -63,6 +67,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+--- !u!114 &9075198941696673241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348738076806015048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09594b58d189bf54bbbf33a454ae8734, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
+  currentHealth: 0
+  rb: {fileID: 2348738076806015051}
+  matWhiteFlash: {fileID: 2100000, guid: 8e36e6b7893bae64ba97b78e882f5524, type: 2}
+  setDefaultMatRestorefloat: 0.1
+--- !u!114 &8021370137648839160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2348738076806015048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12e5660aee96ce468c4de93a4089f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockbackTime: 0.2
 --- !u!212 &2348738076806015045
 SpriteRenderer:
   m_ObjectHideFlags: 0

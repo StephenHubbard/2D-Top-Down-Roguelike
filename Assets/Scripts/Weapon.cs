@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponMouseFollow : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     [SerializeField] private Transform playerPos;
     [SerializeField] private float weaponRotOffset = 20f;
@@ -10,9 +10,14 @@ public class WeaponMouseFollow : MonoBehaviour
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private float slashAnimRotOffset = 130f;
     [SerializeField] private float timeBetweenAttacks = 1f;
+    [SerializeField] private PolygonCollider2D weaponTriggerCollider;
 
     private bool isAttacking = false;
     private GameObject slashAnim;
+
+    private void Start() {
+        weaponTriggerCollider.enabled = false;
+    }
 
     private void Update() {
         MouseFollowWithOffset();
@@ -44,7 +49,7 @@ public class WeaponMouseFollow : MonoBehaviour
             myAnimator.SetTrigger("attack");
             slashAnim = Instantiate(slashAnimPrefab, PlayerController.instance.transform.position, transform.rotation);
             slashAnim.transform.SetParent(PlayerController.instance.transform);
-            
+            weaponTriggerCollider.enabled = true;
         }
     }
 
@@ -68,6 +73,7 @@ public class WeaponMouseFollow : MonoBehaviour
 
     // Animation Event
     public void DoneAttacking() {
+        weaponTriggerCollider.enabled = false;
         StartCoroutine(TimeBetweenAttacksCo());
     }
 
