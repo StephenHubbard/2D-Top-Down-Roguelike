@@ -11,12 +11,15 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float slashAnimRotOffset = 130f;
     [SerializeField] private float timeBetweenAttacks = 1f;
     [SerializeField] private PolygonCollider2D weaponTriggerCollider;
+    [SerializeField] private GameObject slashProjectilePrefab;
+    [SerializeField] private Transform slashProjectileSpawnPoint;
+    [SerializeField] private Transform animSpawnPointPivot;
 
-    private bool isAttacking = false;
+    private bool isAttacking = true;
     private GameObject slashAnim;
 
     private void Start() {
-        weaponTriggerCollider.enabled = false;
+        DoneAttacking();
     }
 
     private void Update() {
@@ -50,6 +53,7 @@ public class Weapon : MonoBehaviour
             slashAnim = Instantiate(slashAnimPrefab, PlayerController.instance.transform.position, transform.rotation);
             slashAnim.transform.SetParent(PlayerController.instance.transform);
             weaponTriggerCollider.enabled = true;
+            Instantiate(slashProjectilePrefab, slashProjectileSpawnPoint.position, animSpawnPointPivot.rotation * Quaternion.Euler(0, 0, -45f));
         }
     }
 

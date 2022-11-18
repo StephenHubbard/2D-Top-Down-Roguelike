@@ -209,7 +209,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250551852473507219}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.265, z: 0}
+  m_LocalPosition: {x: 0, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -321,6 +321,7 @@ MonoBehaviour:
   slashAnimRotOffset: 130
   timeBetweenAttacks: 0.3
   weaponTriggerCollider: {fileID: 1250551853459818195}
+  slashProjectilePrefab: {fileID: 6132061987906140108, guid: aa88678ae05a6b444952b7c372eaeb0a, type: 3}
 --- !u!95 &1250551852845899087
 Animator:
   serializedVersion: 4
@@ -441,6 +442,7 @@ GameObject:
   - component: {fileID: 1953967036}
   - component: {fileID: 1250551853333415458}
   - component: {fileID: 1250551853333415459}
+  - component: {fileID: 1953967038}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -503,12 +505,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 0
-  startingHealth: 10
+  startingHealth: 5
   myAnimator: {fileID: 1250551853333415458}
   whiteFlashMat: {fileID: 2100000, guid: 8e36e6b7893bae64ba97b78e882f5524, type: 2}
   whiteFlashTime: 0.1
   damageRecoveryTime: 1
   respawnTimeFloat: 2
+  healthSlider: {fileID: 0}
 --- !u!70 &1250551853333415456
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -619,7 +622,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -1327602518, guid: a965a43c0ec48dc40b959139b1033aa2, type: 3}
+  m_Sprite: {fileID: -1787086239, guid: 6dc98c41e6dc2c8439da062f1ff91125, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -630,6 +633,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1953967038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250551853333415469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7d55ef4dc5672d4396feaff4f03ac91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentStamina: 0
+  fullStamImage: {fileID: 21300000, guid: 1f69025368296804da293a8f28a374ac, type: 3}
+  emptyStamImage: {fileID: 21300000, guid: 6e23c0d29994bc04c8558f9a9d234d32, type: 3}
+  timeBetweenStaminaRefresh: 3
+  staminaContainer: {fileID: 0}
 --- !u!1 &1250551853459818193
 GameObject:
   m_ObjectHideFlags: 0
