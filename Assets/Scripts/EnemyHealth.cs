@@ -37,6 +37,7 @@ public class EnemyHealth : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player") && canTakeDamage) {
             TakeDamage(1);
+            canTakeDamage = false;
             knockBack.getKnockedBack(PlayerController.instance.transform, 15f);
             StartCoroutine(DamageRecoveryTimeRoutine());
         }

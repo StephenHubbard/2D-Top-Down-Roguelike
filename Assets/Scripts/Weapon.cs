@@ -47,7 +47,6 @@ public class Weapon : MonoBehaviour
 
     private void Attack() {
         if (Input.GetMouseButton(0) && !isAttacking) {
-            // Time.timeScale = .2f;
             isAttacking = true;
             myAnimator.SetTrigger("attack");
             slashAnim = Instantiate(slashAnimPrefab, PlayerController.instance.transform.position, transform.rotation);

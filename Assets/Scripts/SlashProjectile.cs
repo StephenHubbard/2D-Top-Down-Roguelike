@@ -5,6 +5,7 @@ using UnityEngine;
 public class SlashProjectile : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private GameObject particleOnHitPrefab;
 
     private Vector2 movePosition;
 
@@ -19,6 +20,10 @@ public class SlashProjectile : MonoBehaviour
 
     private void MoveProjectile() {
         transform.Translate(new Vector3(1, 1, 0) * Time.deltaTime * moveSpeed);
+    }
+
+    public void InstantiateParticleFX() {
+        Instantiate(particleOnHitPrefab, transform.position, transform.rotation);
     }
 
     // anim event

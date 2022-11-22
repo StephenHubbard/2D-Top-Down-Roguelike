@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashSpeed = 4f;
+    [SerializeField] private float dashTime = .2f;
     [SerializeField] private Animator myAnimator;
     [SerializeField] private SpriteRenderer mySpriteRenderer;
     [SerializeField] private TrailRenderer myTrailRenderer;
@@ -97,7 +98,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator EndDashCo() {
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(dashTime);
         moveSpeed = moveSpeed / dashSpeed;
         myTrailRenderer.emitting = false;
         yield return new WaitForSeconds(.2f);

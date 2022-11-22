@@ -169,6 +169,7 @@ MonoBehaviour:
   rb: {fileID: 2348738076806015051}
   matWhiteFlash: {fileID: 2100000, guid: 8e36e6b7893bae64ba97b78e882f5524, type: 2}
   setDefaultMatRestorefloat: 0.1
+  damageRecoveryTime: 0.3
 --- !u!114 &8021370137648839160
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!70 &2348738076806015050
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

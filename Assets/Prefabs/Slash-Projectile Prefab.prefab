@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4380446258417206053}
   - component: {fileID: 6388693130684030839}
   - component: {fileID: 1608130348624473662}
+  - component: {fileID: 135230234060899543}
   m_Layer: 0
   m_Name: Slash-Projectile Prefab
   m_TagString: Player
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 12
+  particleOnHitPrefab: {fileID: 5772120225615679380, guid: 38be307bb304c204cb966f8af20cebe8, type: 3}
 --- !u!95 &6388693130684030839
 Animator:
   serializedVersion: 4
@@ -147,9 +149,30 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.24730295, y: 0.2507066}
       - {x: -0.004553795, y: 0.4364395}
-      - {x: -0.37939793, y: 0.44125086}
-      - {x: -0.37716332, y: 0.37460965}
+      - {x: -0.25716615, y: 0.43962112}
+      - {x: -0.28752667, y: 0.38112867}
       - {x: 0.12386459, y: 0.122113176}
-      - {x: 0.37981135, y: -0.3761384}
-      - {x: 0.4364395, y: -0.37450868}
+      - {x: 0.37981132, y: -0.2702041}
+      - {x: 0.4364395, y: -0.23597927}
       - {x: 0.43969893, y: 0.003984511}
+--- !u!50 &135230234060899543
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6132061987906140108}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
