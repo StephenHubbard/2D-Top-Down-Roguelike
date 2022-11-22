@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Material matWhiteFlash;
     [SerializeField] private float setDefaultMatRestorefloat = .1f;
     [SerializeField] private float damageRecoveryTime = 1f;
+    [SerializeField] private GameObject deathVFXPrefab;
 
     private bool canTakeDamage = true;
     private Material matDefault;
@@ -51,6 +52,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void DetectDeath() {
         if (currentHealth <= 0) {
+            Instantiate(deathVFXPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
