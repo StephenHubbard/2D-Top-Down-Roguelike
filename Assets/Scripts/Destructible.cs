@@ -13,7 +13,7 @@ public class Destructible : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.GetComponent<SlashProjectile>()) {
+        if (other.gameObject.CompareTag("Player")) {
             myAnimator.SetTrigger("Destroy");
             other.gameObject.GetComponent<SlashProjectile>().InstantiateParticleFX();
         }
