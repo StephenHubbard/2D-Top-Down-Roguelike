@@ -53,9 +53,12 @@ public class EnemyHealth : MonoBehaviour
     private void DetectDeath() {
         if (currentHealth <= 0) {
             Instantiate(deathVFXPrefab, transform.position, transform.rotation);
+            GetComponent<Booty>().DropItems();
             Destroy(gameObject);
         }
     }
+
+    
 
     private IEnumerator SetDefaultMatRoutine(float whiteFlashTime) {
         yield return new WaitForSeconds(whiteFlashTime);

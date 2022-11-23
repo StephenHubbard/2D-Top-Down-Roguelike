@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
     #endregion
 
     #region Private Variables
+
+    public static PlayerHealth instance { get; private set; }
     
     [SerializeField] private int startingHealth = 3;
     [SerializeField] private Animator myAnimator;
@@ -33,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
     #region Unity Methods
 
     private void Awake() {
+        instance = this;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = startingHealth;
@@ -79,6 +82,14 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(SetDefaultMatRoutine());
         StartCoroutine(DamageRecoveryTimeRoutine());
         CheckIfDeath();
+    }
+
+    public void HealSelf(int amount) {
+        currentHealth += amount;
+        if (currentHealth > maxHealth) {
+            currentHealth = maxHealth;
+        }
+        UpdateHealthSlider();
     }
 
     private void UpdateHealthSlider() {

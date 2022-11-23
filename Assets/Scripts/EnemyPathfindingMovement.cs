@@ -43,7 +43,7 @@ public class EnemyPathfindingMovement : MonoBehaviour {
         PrintPathfindingPath();
         if (pathVectorList != null) {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            float reachedTargetDistance = 1f;
+            float reachedTargetDistance = .3f;
             if (Vector3.Distance(GetPosition(), targetPosition) > reachedTargetDistance) {
                 moveDir = (targetPosition - GetPosition()).normalized;
                 lastMoveDir = moveDir;
@@ -76,7 +76,6 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     public void MoveTo(Vector3 targetPosition) {
         SetTargetPosition(targetPosition);
     }
-
 
     public void SetTargetPosition(Vector3 targetPosition) {
         currentPathIndex = 0;

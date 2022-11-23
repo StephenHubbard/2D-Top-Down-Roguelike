@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Stamina : MonoBehaviour
 {
+    public static Stamina instance { get; private set; }
     public int currentStamina;
 
     [SerializeField] private Sprite fullStamImage, emptyStamImage;
@@ -12,11 +13,8 @@ public class Stamina : MonoBehaviour
     [SerializeField] private Transform staminaContainer;
     
     private void Awake() {
+        instance = this;
         currentStamina = 3;
-    }
-
-    private void Start() {
-
     }
 
     private IEnumerator RefreshStaminaCD() {

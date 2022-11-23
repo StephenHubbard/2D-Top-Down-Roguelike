@@ -49,7 +49,6 @@ public class EnemyAI : MonoBehaviour
 
         case State.ChaseTarget:
             pathfindingMovement.MoveTo(PlayerController.instance.GetPosition());
-
             float stopChaseDistance = 12f;
             if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) > stopChaseDistance) {
                 state = State.GoingBackToStart;

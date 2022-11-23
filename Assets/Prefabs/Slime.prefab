@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2348738076806015050}
   - component: {fileID: 2348738076806015051}
   - component: {fileID: 2348738076806015047}
-  - component: {fileID: 8926505726410932081}
+  - component: {fileID: 1338576170}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -294,7 +294,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8926505726410932081
+--- !u!114 &1338576170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -303,65 +303,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2348738076806015048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Script: {fileID: 11500000, guid: ec98b0660ce77e140b152034fa908b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ImpulseDefinition:
-    m_ImpulseChannel: 1
-    m_ImpulseShape: 2
-    m_CustomImpulseShape:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    m_ImpulseDuration: 0.2
-    m_ImpulseType: 3
-    m_DissipationRate: 0.25
-    m_RawSignal: {fileID: 11400000, guid: 64707fa13d8f608478bbe97f5835d8b2, type: 2}
-    m_AmplitudeGain: 1
-    m_FrequencyGain: 1
-    m_RepeatMode: 0
-    m_Randomize: 1
-    m_TimeEnvelope:
-      m_AttackShape:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_DecayShape:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 1
-          inSlope: -0.044095665
-          outSlope: -0.044095665
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0.2743043
-        - serializedVersion: 3
-          time: 1
-          value: 0.006134033
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-      m_AttackTime: 0
-      m_SustainTime: 0.2
-      m_DecayTime: 0.7
-      m_ScaleWithImpact: 1
-      m_HoldForever: 0
-    m_ImpactRadius: 100
-    m_DirectionMode: 0
-    m_DissipationMode: 2
-    m_DissipationDistance: 100
-    m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: 0, y: -1, z: 0}
+  healthGlobe: {fileID: 987220485500486288, guid: e1de6b1fffbfb6c4cba3029f4de6934a, type: 3}
+  staminaGlobe: {fileID: 6653878483764802702, guid: 8341c5667c20c7340b0a29ae9c0a4ad9, type: 3}
+  goldCoin: {fileID: 0}
+  isEnemy: 1

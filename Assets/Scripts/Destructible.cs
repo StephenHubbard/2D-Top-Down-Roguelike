@@ -6,6 +6,7 @@ public class Destructible : MonoBehaviour
 {
     private Animator myAnimator;
     private Collider2D myCollider;
+    [SerializeField] private GameObject destroyVFX;
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
@@ -14,8 +15,13 @@ public class Destructible : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
-            myAnimator.SetTrigger("Destroy");
-            other.gameObject.GetComponent<SlashProjectile>().InstantiateParticleFX();
+            GetComponent<Booty>().DropItems();
+            // myAnimator.SetTrigger("Destroy");
+            Instantiate(destroyVFX, transform.position, transform.rotation);
+            if (other.gameObject.GetComponent<SlashProjectile>()) {
+                other.gameObject.GetComponent<SlashProjectile>().InstantiateParticleFX();
+            }
+            Destroy(gameObject);
         }
     }
 

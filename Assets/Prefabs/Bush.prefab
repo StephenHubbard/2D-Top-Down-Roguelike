@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1046063962799551995}
   - component: {fileID: 6122850599930266430}
   - component: {fileID: 6747927512994452680}
+  - component: {fileID: 6527438295743537581}
   m_Layer: 0
   m_Name: Bush
   m_TagString: Untagged
@@ -121,7 +122,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5334999009769016000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0e54d33d6ad8eb846b6c56cc7fb85c0f, type: 2}
   m_CullingMode: 0
@@ -145,3 +146,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc791906966ccc4d9a4c373c8a818c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyVFX: {fileID: 5772120225615679380, guid: 46883005273913849a80eee7bcf34b63, type: 3}
+--- !u!114 &6527438295743537581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334999009769016000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec98b0660ce77e140b152034fa908b10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthGlobe: {fileID: 987220485500486288, guid: e1de6b1fffbfb6c4cba3029f4de6934a, type: 3}
+  staminaGlobe: {fileID: 6653878483764802702, guid: 8341c5667c20c7340b0a29ae9c0a4ad9, type: 3}
+  goldCoin: {fileID: 0}
+  isEnemy: 0
