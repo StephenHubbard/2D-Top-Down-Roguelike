@@ -13,6 +13,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float setDefaultMatRestorefloat = .1f;
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private GameObject deathVFXPrefab;
+    [SerializeField] private string enemyHitStringSFX = "";
+    [SerializeField] private string enemyDeathStringSFX = "";
 
     private bool canTakeDamage = true;
     private Material matDefault;
@@ -38,6 +40,7 @@ public class EnemyHealth : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player") && canTakeDamage) {
             TakeDamage(1);
+            AudioManager.instance.Play(enemyHitStringSFX);
             canTakeDamage = false;
             knockBack.getKnockedBack(PlayerController.instance.transform, 15f);
             StartCoroutine(DamageRecoveryTimeRoutine());
@@ -54,11 +57,10 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0) {
             Instantiate(deathVFXPrefab, transform.position, transform.rotation);
             GetComponent<Booty>().DropItems();
+            AudioManager.instance.Play(enemyDeathStringSFX);
             Destroy(gameObject);
         }
     }
-
-    
 
     private IEnumerator SetDefaultMatRoutine(float whiteFlashTime) {
         yield return new WaitForSeconds(whiteFlashTime);

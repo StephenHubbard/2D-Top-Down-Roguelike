@@ -53,6 +53,7 @@ public class Weapon : MonoBehaviour
             slashAnim.transform.SetParent(PlayerController.instance.transform);
             weaponTriggerCollider.enabled = true;
             Instantiate(slashProjectilePrefab, slashProjectileSpawnPoint.position, animSpawnPointPivot.rotation * Quaternion.Euler(0, 0, -45f));
+            AudioManager.instance.Play("Sword Slash");
         }
     }
 

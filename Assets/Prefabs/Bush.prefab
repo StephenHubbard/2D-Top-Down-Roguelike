@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyVFX: {fileID: 5772120225615679380, guid: 46883005273913849a80eee7bcf34b63, type: 3}
+  destroyStringSFX: Bush Destroy
 --- !u!114 &6527438295743537581
 MonoBehaviour:
   m_ObjectHideFlags: 0

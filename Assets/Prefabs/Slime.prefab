@@ -172,6 +172,8 @@ MonoBehaviour:
   setDefaultMatRestorefloat: 0.1
   damageRecoveryTime: 0.3
   deathVFXPrefab: {fileID: 5772120225615679380, guid: fef98c895f9f7484885ba31c4428adcd, type: 3}
+  enemyHitStringSFX: Slime Hit
+  enemyDeathStringSFX: Slime Death
 --- !u!114 &8021370137648839160
 MonoBehaviour:
   m_ObjectHideFlags: 0

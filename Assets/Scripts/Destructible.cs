@@ -7,6 +7,7 @@ public class Destructible : MonoBehaviour
     private Animator myAnimator;
     private Collider2D myCollider;
     [SerializeField] private GameObject destroyVFX;
+    [SerializeField] private string destroyStringSFX = "";
 
     private void Awake() {
         myAnimator = GetComponent<Animator>();
@@ -16,6 +17,7 @@ public class Destructible : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
             GetComponent<Booty>().DropItems();
+            AudioManager.instance.Play(destroyStringSFX);
             // myAnimator.SetTrigger("Destroy");
             Instantiate(destroyVFX, transform.position, transform.rotation);
             if (other.gameObject.GetComponent<SlashProjectile>()) {
