@@ -78,6 +78,10 @@ public class Pickup : MonoBehaviour
             case PickupType.staminaGlobe:
                 Stamina.instance.RefreshStamina();
             break;
+
+            case PickupType.goldCoin:
+                EconomyManager.instance.ChangeCurrentGold(1);
+            break;
         }
     }
 

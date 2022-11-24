@@ -15,6 +15,8 @@ public class Booty : MonoBehaviour
             Instantiate(healthGlobe, transform.position, transform.rotation);
         } else if (randomNum == 2 && isEnemy) {
             Instantiate(staminaGlobe, transform.position, transform.rotation);
+        } else if (randomNum == 3) {
+            Instantiate(goldCoin, transform.position, transform.rotation);
         }
     }
 }
