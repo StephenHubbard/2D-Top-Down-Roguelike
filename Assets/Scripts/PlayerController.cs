@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator EndDashCo() {
+        AudioManager.instance.Play("Dash");
         yield return new WaitForSeconds(dashTime);
         moveSpeed = moveSpeed / dashSpeed;
         myTrailRenderer.emitting = false;
