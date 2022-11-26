@@ -47,6 +47,13 @@ public class ActiveInventory : MonoBehaviour
 
         if (activeSlotIndexNum <= 1) {
             ChangeActiveWeapon();
+        } else {
+            foreach (Transform availableWeapons in PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform)
+            {
+                availableWeapons.gameObject.SetActive(false);
+            }
+
+            PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().WeaponNull();
         }
     }
 
@@ -59,9 +66,6 @@ public class ActiveInventory : MonoBehaviour
         PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform.GetChild(activeSlotIndexNum).gameObject.SetActive(true);
         
         PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().NewWeapon();
-
-        // TODO: will need to rework closer to this eventually
-        // itemToEquip = Instantiate (itemToEquip, PlayerController.instance.GetPosition(), itemToEquip.transform.rotation);
-        // itemToEquip.transform.SetParent(PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform);
+        
     }
 }

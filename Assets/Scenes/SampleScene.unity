@@ -556,7 +556,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: dee0468ff0751284fb4d8d4fb02aba72, type: 3}
     - {fileID: 8300000, guid: 4cdc02b3948f813439c034efc12b0723, type: 3}
     loop: 0
-    volume: 0.5
+    volume: 0.35
     pitch: 1
     source: {fileID: 0}
   - audioType: 0
@@ -66288,29 +66288,9 @@ PrefabInstance:
       propertyPath: staminaContainer
       value: 
       objectReference: {fileID: 1233307360}
-    - target: {fileID: 1250551852473507221, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250551852845899084, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250551853249303517, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250551853333415459, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1250551853333415469, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1250551853333415469, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1250551853333415470, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
       propertyPath: m_RootOrder
@@ -66360,18 +66340,6 @@ PrefabInstance:
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1200479523}
-    - target: {fileID: 1476935622550488517, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: deathVFXPrefab
-      value: 
-      objectReference: {fileID: 2482150109453438633, guid: 7768377e295ff354c85ed5cd8956a7ef, type: 3}
-    - target: {fileID: 1476935622550488517, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: startingHealth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1903618901959217059, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
 --- !u!1001 &3145350621368424155

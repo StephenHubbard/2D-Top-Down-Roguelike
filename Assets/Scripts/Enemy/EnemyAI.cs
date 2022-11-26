@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour
     private Vector3 roamPosition;
     private State state;
     private bool canAttack = true;
+    private float timeRoaming = 0f;
 
     private void Awake() {
         pathfindingMovement = GetComponent<EnemyPathfindingMovement>();
@@ -43,11 +44,12 @@ public class EnemyAI : MonoBehaviour
         {
         default:
         case State.Roaming: 
+            timeRoaming += Time.deltaTime;
 
             pathfindingMovement.MoveTo(roamPosition);
 
             float reachedPositionDistance = 1f;
-            if (Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) {
+            if ((Vector3.Distance(transform.position, roamPosition) < reachedPositionDistance) || timeRoaming > 4f) {
                 roamPosition = GetRoamingPosition();
             }
             FindTarget();
@@ -107,6 +109,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     public void FindTarget() {
+        timeRoaming = 0f;
         if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < targetChaseRange && 
             Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) > attackRange) {
             state = State.ChaseTarget;

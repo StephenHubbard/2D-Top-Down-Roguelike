@@ -34,15 +34,19 @@ public class ActiveWeapon : MonoBehaviour
         };
     }
 
+    public void WeaponNull() {
+        activeWeapon = null;
+    }
+
     public void ToggleMouseFollow(bool boolValue) {
         GetComponent<MouseFollow>().enabled = boolValue;
     }
 
     private void Attack() {
         if (Input.GetMouseButton(0) && !isAttacking) {
-            isAttacking = true;
             
             if (activeWeapon is IWeapon) {
+                isAttacking = true;
                 (activeWeapon as IWeapon).Attack();
             }
         }

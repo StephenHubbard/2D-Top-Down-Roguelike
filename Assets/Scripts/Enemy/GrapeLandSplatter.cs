@@ -41,6 +41,7 @@ public class GrapeLandSplatter : MonoBehaviour
         if (other.gameObject.GetComponent<PlayerController>()) {
             other.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
             other.gameObject.GetComponent<KnockBack>().getKnockedBack(transform, 5f);
+            // AudioManager.instance.Play("Hero Take Damage");
         }
     }
 

@@ -523,7 +523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1250551853249303518
 Transform:
   m_ObjectHideFlags: 0
@@ -708,13 +708,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 0
-  startingHealth: 5
+  isDead: 0
+  startingHealth: 3
   myAnimator: {fileID: 1250551853333415458}
   whiteFlashMat: {fileID: 2100000, guid: 8e36e6b7893bae64ba97b78e882f5524, type: 2}
   whiteFlashTime: 0.1
   damageRecoveryTime: 1
   respawnTimeFloat: 2
   healthSlider: {fileID: 0}
+  deathVFXPrefab: {fileID: 2482150109453438633, guid: 7768377e295ff354c85ed5cd8956a7ef, type: 3}
 --- !u!70 &1250551853333415456
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -744,6 +746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   facingLeft: 0
+  canMove: 1
   rb: {fileID: 1250551853333415457}
   moveSpeed: 4
   dashSpeed: 4
@@ -945,7 +948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1903618901959217056
 Transform:
   m_ObjectHideFlags: 0

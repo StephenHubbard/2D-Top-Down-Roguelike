@@ -66,12 +66,18 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0 && !isDead) {
             isDead = true;
             PlayerController.instance.canMove = false;
-            GetComponent<CapsuleCollider2D>().enabled = false;
             myAnimator.SetTrigger("death");
+            StartCoroutine(DisableCapsuleColliderCo());
             Instantiate(deathVFXPrefab, transform.position + new Vector3(0, -1, 0), transform.rotation);
             AudioManager.instance.Play("Player Death");
             AudioManager.instance.StopMusic();
+            rb.velocity = Vector2.zero;
         } 
+    }
+
+    private IEnumerator DisableCapsuleColliderCo() {
+        yield return new WaitForSeconds(.3f);
+        GetComponent<CapsuleCollider2D>().enabled = false;
     }
 
 
