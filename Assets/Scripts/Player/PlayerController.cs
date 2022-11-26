@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance { get; private set; }
     public bool facingLeft = false;
+    public bool canMove = true;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveSpeed = 4f;
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movement;
     private bool isDashing = false;
+    
 
     private KnockBack knockBack;
     private Stamina stamina;
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour
 
 
     private void PlayerInput() {
+        if (!canMove) { return; }
+
         if (Input.GetKey(KeyCode.W)) movement.y = +1f;
         if (Input.GetKey(KeyCode.S)) movement.y = -1f;
         if (Input.GetKey(KeyCode.A)) movement.x = -1f;

@@ -16,6 +16,7 @@ public class PlayerHealth : MonoBehaviour
     #region Private Variables
 
     public static PlayerHealth instance { get; private set; }
+    public bool isDead = false;
     
     [SerializeField] private int startingHealth = 3;
     [SerializeField] private Animator myAnimator;
@@ -24,10 +25,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private float damageRecoveryTime = 1f;
     [SerializeField] private float respawnTimeFloat = 2f;
     [SerializeField] private Slider healthSlider;
+    [SerializeField] private GameObject deathVFXPrefab;
     private Material defaultMat;
     private SpriteRenderer spriteRenderer;
     private bool canTakeDamage = true;
-    private bool isDead = false;
     private Rigidbody2D rb;
 
     #endregion
@@ -63,17 +64,16 @@ public class PlayerHealth : MonoBehaviour
 
     public void CheckIfDeath() {
         if (currentHealth <= 0 && !isDead) {
-            // isDead set to prevent death animation from triggering multiple times
             isDead = true;
-            // PlayerController.instance.canMove = false;
-            // PlayerController.instance.canAttack = false;
-            // myAnimator.SetTrigger("dead");
-            Destroy(gameObject);
-        } else {
-            // PlayerController.instance.canMove = true;
-            // PlayerController.instance.canAttack = true;
-        }
+            PlayerController.instance.canMove = false;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            myAnimator.SetTrigger("death");
+            Instantiate(deathVFXPrefab, transform.position + new Vector3(0, -1, 0), transform.rotation);
+            AudioManager.instance.Play("Player Death");
+            AudioManager.instance.StopMusic();
+        } 
     }
+
 
     public void TakeDamage(int damage) {
         spriteRenderer.material = whiteFlashMat;

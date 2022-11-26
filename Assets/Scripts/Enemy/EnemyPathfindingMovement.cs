@@ -15,8 +15,8 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     private List<Vector3> pathVectorList;
     private int currentPathIndex;
     private Vector3 moveDir;
-    private Vector3 lastMoveDir;
     private KnockBack knockBack;
+    private bool allowedToMove = true;
 
     private void Awake() {
         knockBack = GetComponent<KnockBack>();
@@ -39,14 +39,19 @@ public class EnemyPathfindingMovement : MonoBehaviour {
         }
     }
 
+    public void AllowedToMoveToggle(bool boolValue) {
+        allowedToMove = boolValue;
+    }
+
     private void HandleMovement() {
+        if (!allowedToMove) { return; }
+
         PrintPathfindingPath();
         if (pathVectorList != null) {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
             float reachedTargetDistance = .3f;
             if (Vector3.Distance(GetPosition(), targetPosition) > reachedTargetDistance) {
                 moveDir = (targetPosition - GetPosition()).normalized;
-                lastMoveDir = moveDir;
             } else {
                 currentPathIndex++;
                 if (currentPathIndex >= pathVectorList.Count) {
@@ -55,6 +60,7 @@ public class EnemyPathfindingMovement : MonoBehaviour {
             }
         } 
     }
+
 
     public void StopMoving() {
         pathVectorList = null;
@@ -91,9 +97,6 @@ public class EnemyPathfindingMovement : MonoBehaviour {
         return transform.position;
     }
 
-    public Vector3 GetLastMoveDir() {
-        return lastMoveDir;
-    }      
     
     public void Enable() {
         enabled = true;

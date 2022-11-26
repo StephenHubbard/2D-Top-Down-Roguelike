@@ -19,6 +19,7 @@ public class KnockBack : MonoBehaviour
         return gettingKnockedBack;
     }
 
+
     public void getKnockedBack(Transform damageSource, float knockBackThrust) {
         Vector2 difference = transform.position - damageSource.position;
         difference = difference.normalized * knockBackThrust * rb.mass;

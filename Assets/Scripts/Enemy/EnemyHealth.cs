@@ -55,7 +55,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void DetectDeath() {
         if (currentHealth <= 0) {
-            Instantiate(deathVFXPrefab, transform.position, transform.rotation);
+            GameObject deathVFX = Instantiate(deathVFXPrefab, transform.position, transform.rotation);
             GetComponent<Booty>().DropItems();
             AudioManager.instance.Play(enemyDeathStringSFX);
             Destroy(gameObject);

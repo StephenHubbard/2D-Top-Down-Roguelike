@@ -1028,6 +1028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponInfo: {fileID: 11400000, guid: 2c0610b519bed9a42a7b8d89c87d26e9, type: 2}
   arrowPrefab: {fileID: 868326462872830730, guid: 3dce4e30ee510f4489c7419f6239bebe, type: 3}
+  arrowSpawnPoint: {fileID: 1734785467}
 --- !u!95 &621602798
 Animator:
   serializedVersion: 4

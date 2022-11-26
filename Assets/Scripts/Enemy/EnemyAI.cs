@@ -9,17 +9,23 @@ public class EnemyAI : MonoBehaviour
         Roaming, 
         ChaseTarget,
         GoingBackToStart,
+        Attacking,
     }
 
     public float enemyKnockBackThrust = 15f;
     public int damageDoneToHero = 1;
 
     [SerializeField] private float targetChaseRange = 5f;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float stopChaseDistance = 10f;
+    [SerializeField] private MonoBehaviour enemyType;
+    [SerializeField] private float attackCooldown = 2f;
 
     private EnemyPathfindingMovement pathfindingMovement;
     private Vector3 startingPosition;
     private Vector3 roamPosition;
     private State state;
+    private bool canAttack = true;
 
     private void Awake() {
         pathfindingMovement = GetComponent<EnemyPathfindingMovement>();
@@ -48,14 +54,20 @@ public class EnemyAI : MonoBehaviour
             break;
 
         case State.ChaseTarget:
+
             pathfindingMovement.MoveTo(PlayerController.instance.GetPosition());
-            float stopChaseDistance = 12f;
+
+            if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < attackRange) {
+                state = State.Attacking;
+            }
+
             if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) > stopChaseDistance) {
                 state = State.GoingBackToStart;
             }
             break;
 
         case State.GoingBackToStart:
+
             pathfindingMovement.MoveTo(startingPosition);
 
             reachedPositionDistance = 1f;
@@ -63,17 +75,42 @@ public class EnemyAI : MonoBehaviour
                 state = State.Roaming;
             }
             break;
+
+        case State.Attacking:
+            if (attackRange != 0 && canAttack) {
+                (enemyType as IEnemy).Attack();
+                canAttack = false;
+                StartCoroutine(AttackCooldownCo());
+                pathfindingMovement.StopMoving();
+                GetComponent<EnemyPathfindingMovement>().AllowedToMoveToggle(false);
+            } else {
+                state = State.ChaseTarget;
+            }
+
+            break;
+        }
+
+        if (PlayerController.instance.GetComponent<PlayerHealth>().isDead) {
+            state = State.Roaming;
         }
     }
+
+    private IEnumerator AttackCooldownCo() {
+        yield return new WaitForSeconds(attackCooldown);
+        canAttack = true;
+    }
+
+  
 
     private Vector3 GetRoamingPosition() {
         return startingPosition + UtilsClass.GetRandomDir() * Random.Range(1f, 5f);
     }
 
-    private void FindTarget() {
-        if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < targetChaseRange) {
+    public void FindTarget() {
+        if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < targetChaseRange && 
+            Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) > attackRange) {
             state = State.ChaseTarget;
-        }
+        } 
     }
 
     

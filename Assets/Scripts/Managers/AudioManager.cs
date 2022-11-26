@@ -47,6 +47,10 @@ public class AudioManager : MonoBehaviour
         Play("Theme Music");
     }
 
+    public void StopMusic() {
+        musicMixerGroup.audioMixer.SetFloat("Music Volume", -80f);
+    }
+
     public void Play (string name) {
 
 
