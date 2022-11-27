@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3145350620669316785}
   - component: {fileID: 3145350620669316786}
   - component: {fileID: 1274519558068142943}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,8 +99,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.008522639, y: 0.4302885}
-  m_Size: {x: 0.78821075, y: 0.5316132}
+  m_Offset: {x: -0.016477985, y: 0.6510504}
+  m_Size: {x: 1.1799845, y: 1.1799845}
   m_Direction: 1
 --- !u!114 &1274519558068142943
 MonoBehaviour:

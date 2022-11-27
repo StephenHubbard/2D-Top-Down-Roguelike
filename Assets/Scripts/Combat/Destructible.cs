@@ -18,13 +18,14 @@ public class Destructible : MonoBehaviour
         if (other.gameObject.CompareTag("Player")) {
             GetComponent<Booty>().DropItems();
             AudioManager.instance.Play(destroyStringSFX);
-            // myAnimator.SetTrigger("Destroy");
             Instantiate(destroyVFX, transform.position, transform.rotation);
             if (other.gameObject.GetComponent<Projectile>()) {
                 other.gameObject.GetComponent<Projectile>().InstantiateParticleFX();
             }
             Destroy(gameObject);
         }
+
+        
     }
 
     // anim event

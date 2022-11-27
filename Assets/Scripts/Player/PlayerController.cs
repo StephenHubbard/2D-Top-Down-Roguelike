@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private KnockBack knockBack;
     private Stamina stamina;
+    private PlayerHealth playerHealth;
 
 
     private void Awake() {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 
         knockBack = GetComponent<KnockBack>();
         stamina = GetComponent<Stamina>();
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update() {
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
     }
     
     private void Move() {
-        if (knockBack.ReturnGettingKnockedBack()) { return; }
+        if (knockBack.ReturnGettingKnockedBack() || playerHealth.isDead) { return; }
 
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         
@@ -92,7 +94,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Dash() {
-        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && stamina.currentStamina > 0) {
+        if (Input.GetKeyDown(KeyCode.Space) && !isDashing && stamina.currentStamina > 0 && !playerHealth.isDead) {
             stamina.UseStamina();
             moveSpeed = moveSpeed * dashSpeed;
             myTrailRenderer.emitting = true;

@@ -60,6 +60,7 @@ MonoBehaviour:
   attackRange: 5
   stopChaseDistance: 10
   enemyType: {fileID: 236017724050464152}
+  attackCooldown: 2
 --- !u!114 &1641970295956770665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09594b58d189bf54bbbf33a454ae8734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 4
   currentHealth: 0
   rb: {fileID: 1641970295956770659}
   matWhiteFlash: {fileID: 2100000, guid: 8e36e6b7893bae64ba97b78e882f5524, type: 2}

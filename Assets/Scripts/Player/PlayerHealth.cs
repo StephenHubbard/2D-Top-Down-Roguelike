@@ -67,16 +67,21 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
             PlayerController.instance.canMove = false;
             myAnimator.SetTrigger("death");
-            StartCoroutine(DisableCapsuleColliderCo());
-            Instantiate(deathVFXPrefab, transform.position + new Vector3(0, -1, 0), transform.rotation);
+            // StartCoroutine(DisableCapsuleColliderCo());
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            GameObject deathFXgo = Instantiate(deathVFXPrefab, transform.position + new Vector3(0, -1, 0), transform.rotation);
+            deathFXgo.transform.SetParent(this.transform);
             AudioManager.instance.Play("Player Death");
             AudioManager.instance.StopMusic();
-            rb.velocity = Vector2.zero;
         } 
     }
 
     private IEnumerator DisableCapsuleColliderCo() {
         yield return new WaitForSeconds(.3f);
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
         GetComponent<CapsuleCollider2D>().enabled = false;
     }
 

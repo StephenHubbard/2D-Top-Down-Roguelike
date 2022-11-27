@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Undestructable : MonoBehaviour
+public class Indestructible : MonoBehaviour
 {
-
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<Projectile>()) {
             other.gameObject.GetComponent<Projectile>().InstantiateParticleFX();

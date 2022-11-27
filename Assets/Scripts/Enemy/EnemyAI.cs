@@ -80,11 +80,11 @@ public class EnemyAI : MonoBehaviour
 
         case State.Attacking:
             if (attackRange != 0 && canAttack) {
+                GetComponent<EnemyPathfindingMovement>().AllowedToMoveToggle(false);
                 (enemyType as IEnemy).Attack();
                 canAttack = false;
                 StartCoroutine(AttackCooldownCo());
                 pathfindingMovement.StopMoving();
-                GetComponent<EnemyPathfindingMovement>().AllowedToMoveToggle(false);
             } else {
                 state = State.ChaseTarget;
             }

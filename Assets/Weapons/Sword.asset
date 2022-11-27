@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be7724ed7f11314bb6f5da796d158f5, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 2
   weaponRange: 3
   weaponPrefab: {fileID: 806664431297299675, guid: c3cc89318bdc15444b6c6f4233387d64, type: 3}
   inventorySlotSprite: {fileID: 21300000, guid: 2c83f576330f317458131bb44150b471, type: 3}

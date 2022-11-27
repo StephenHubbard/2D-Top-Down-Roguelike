@@ -20,6 +20,10 @@ public class ActiveWeapon : MonoBehaviour
         Attack();
     }
 
+    public MonoBehaviour ReturnActiveWeapon() {
+        return activeWeapon;
+    }
+
     public Transform ReturnAnimSpawnPoint() {
         return animSpawnPointPivot;
     }

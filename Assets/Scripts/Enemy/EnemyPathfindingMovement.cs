@@ -18,6 +18,8 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     private KnockBack knockBack;
     private bool allowedToMove = true;
 
+    private Vector2 lastMoveDir;
+
     private void Awake() {
         knockBack = GetComponent<KnockBack>();
         myRb = GetComponent<Rigidbody2D>();
@@ -28,11 +30,11 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (knockBack.ReturnGettingKnockedBack()) { return; }
+        if (knockBack.ReturnGettingKnockedBack() && !allowedToMove) { return; }
 
         myRb.velocity = moveDir * moveSpeed;
 
-        if (moveDir.x < 0) {
+        if (lastMoveDir.x < 0) {
             GetComponent<SpriteRenderer>().flipX = true;
         } else {
             GetComponent<SpriteRenderer>().flipX = false;
@@ -46,7 +48,14 @@ public class EnemyPathfindingMovement : MonoBehaviour {
     private void HandleMovement() {
         if (!allowedToMove) { return; }
 
+        if (moveDir.x < 0) {
+            lastMoveDir.x = -1;
+        } else {
+            lastMoveDir.x = 1;
+        }
+
         PrintPathfindingPath();
+        
         if (pathVectorList != null) {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
             float reachedTargetDistance = .3f;
@@ -61,9 +70,8 @@ public class EnemyPathfindingMovement : MonoBehaviour {
         } 
     }
 
-
     public void StopMoving() {
-        pathVectorList = null;
+        // pathVectorList = null;
         moveDir = Vector3.zero;
     }
 

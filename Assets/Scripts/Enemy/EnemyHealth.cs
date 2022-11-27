@@ -37,17 +37,11 @@ public class EnemyHealth : MonoBehaviour
         DetectDeath();
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Player") && canTakeDamage) {
-            TakeDamage(1);
-            AudioManager.instance.Play(enemyHitStringSFX);
-            canTakeDamage = false;
-            knockBack.getKnockedBack(PlayerController.instance.transform, 15f);
-            StartCoroutine(DamageRecoveryTimeRoutine());
-        }
-    }
-
     public void TakeDamage(int damage) {
+        AudioManager.instance.Play(enemyHitStringSFX);
+        canTakeDamage = false;
+        knockBack.getKnockedBack(PlayerController.instance.transform, 15f);
+        StartCoroutine(DamageRecoveryTimeRoutine());
         currentHealth -= damage;
         spriteRenderer.material = matWhiteFlash;
         StartCoroutine(SetDefaultMatRoutine(setDefaultMatRestorefloat));

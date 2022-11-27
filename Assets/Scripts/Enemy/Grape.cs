@@ -17,14 +17,15 @@ public class Grape : MonoBehaviour, IEnemy
     }
 
     public void Attack() {
+        myAnimator.SetTrigger("Attack");
         if (transform.position.x - PlayerController.instance.GetPosition().x < 0) {
             spriteRenderer.flipX = false;
         } else {
             spriteRenderer.flipX = true;
         }
-        myAnimator.SetTrigger("Attack");
     }
 
+    // anim event
     public void SpawnProjectile()
     {
         Vector3 projectileSpawnPos;

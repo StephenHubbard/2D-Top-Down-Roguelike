@@ -45,7 +45,7 @@ public class ActiveInventory : MonoBehaviour
 
         activeInventoryContainer.GetChild(indexNum).GetChild(0).gameObject.SetActive(true);
 
-        if (activeSlotIndexNum <= 1) {
+        if (activeSlotIndexNum <= 2) {
             ChangeActiveWeapon();
         } else {
             foreach (Transform availableWeapons in PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform)
