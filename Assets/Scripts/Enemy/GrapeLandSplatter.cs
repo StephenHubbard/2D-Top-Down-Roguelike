@@ -35,6 +35,8 @@ public class GrapeLandSplatter : MonoBehaviour
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, newAlpha);
             yield return null;
         }
+
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {

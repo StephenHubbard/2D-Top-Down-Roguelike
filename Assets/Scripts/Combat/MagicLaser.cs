@@ -83,6 +83,8 @@ public class MagicLaser : MonoBehaviour
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, newAlpha);
             yield return null;
         }
+
+        Destroy(gameObject);
     }
 
     

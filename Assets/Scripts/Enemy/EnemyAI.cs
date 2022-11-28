@@ -40,10 +40,15 @@ public class EnemyAI : MonoBehaviour
    
 
     private void Update() {
+        MovementStateControl();
+    }
+
+    private void MovementStateControl() {
         switch (state)
         {
         default:
         case State.Roaming: 
+
             timeRoaming += Time.deltaTime;
 
             pathfindingMovement.MoveTo(roamPosition);
@@ -75,6 +80,8 @@ public class EnemyAI : MonoBehaviour
             reachedPositionDistance = 1f;
             if (Vector3.Distance(transform.position, startingPosition) < reachedPositionDistance) {
                 state = State.Roaming;
+                StartCoroutine(RoamingCo());
+
             }
             break;
 
@@ -94,6 +101,7 @@ public class EnemyAI : MonoBehaviour
 
         if (PlayerController.instance.GetComponent<PlayerHealth>().isDead) {
             state = State.Roaming;
+            StartCoroutine(RoamingCo());
         }
     }
 
@@ -102,7 +110,13 @@ public class EnemyAI : MonoBehaviour
         canAttack = true;
     }
 
-  
+    private IEnumerator RoamingCo() {
+        while (state == State.Roaming)
+        {
+            yield return new WaitForSeconds(4f);
+            roamPosition = GetRoamingPosition();
+        }
+    }
 
     private Vector3 GetRoamingPosition() {
         return startingPosition + UtilsClass.GetRandomDir() * Random.Range(1f, 5f);

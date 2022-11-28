@@ -33,6 +33,12 @@ public class ActiveInventory : MonoBehaviour
                 }
             }
         }
+
+        if (Input.mouseScrollDelta.y < 0 && activeSlotIndexNum != activeInventoryContainer.childCount - 1) {
+            ToggleActiveHighlight(activeSlotIndexNum + 1);
+        } else if (Input.mouseScrollDelta.y > 0 && activeSlotIndexNum != 0) {
+            ToggleActiveHighlight(activeSlotIndexNum - 1);
+        }
     }
 
     private void ToggleActiveHighlight(int indexNum) {

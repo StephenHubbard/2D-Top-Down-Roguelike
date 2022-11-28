@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9d559560a975b64eb6b82107b89ced5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  laserGrowTime: 0.15
+  laserGrowTime: 0.25
   projectileParticleFX: {fileID: 5772120225615679380, guid: 38be307bb304c204cb966f8af20cebe8, type: 3}
   undestructibleLayerMask:
     serializedVersion: 2

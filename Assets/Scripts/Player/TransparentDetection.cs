@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 public class TransparentDetection : MonoBehaviour
 {
+    [Range(0, 1)]
+    [SerializeField] private float transparencyAmount = .8f;
+
     private Tilemap tilemap;
     private SpriteRenderer spriteRenderer;
 
@@ -46,7 +49,7 @@ public class TransparentDetection : MonoBehaviour
         while (elapsedTime < fadeTime)
         {
             elapsedTime += Time.deltaTime;
-            float newAlpha = Mathf.Lerp(startValue, .8f, elapsedTime / fadeTime);
+            float newAlpha = Mathf.Lerp(startValue, transparencyAmount, elapsedTime / fadeTime);
             tilemap.color = new Color(tilemap.color.r, tilemap.color.g, tilemap.color.b, newAlpha);
             yield return null;
         }
@@ -54,7 +57,7 @@ public class TransparentDetection : MonoBehaviour
 
     private IEnumerator FadeInTileMap()
     {
-        float fadeTime = .8f;
+        float fadeTime = .4f;
         float elapsedTime = 0;
         float startValue = tilemap.color.a;
 
@@ -76,7 +79,7 @@ public class TransparentDetection : MonoBehaviour
         while (elapsedTime < fadeTime)
         {
             elapsedTime += Time.deltaTime;
-            float newAlpha = Mathf.Lerp(startValue, .8f, elapsedTime / fadeTime);
+            float newAlpha = Mathf.Lerp(startValue, transparencyAmount, elapsedTime / fadeTime);
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, newAlpha);
             yield return null;
         }

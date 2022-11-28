@@ -8,5 +8,4 @@ public class WeaponInfo : ScriptableObject
     public int damageAmount;
     public float weaponRange;
     public float weaponCooldown;
-    public Sprite inventorySlotSprite;
 }
