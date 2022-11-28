@@ -35,6 +35,7 @@ public class Sword : MonoBehaviour, IWeapon
         MouseFollowWithOffset();
     }
 
+
     public WeaponInfo ReturnWeaponInfo() {
         return weaponInfo;
     }

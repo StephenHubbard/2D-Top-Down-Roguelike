@@ -8,16 +8,28 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject particleOnHitPrefab;
 
     private WeaponInfo weaponInfo;
+    private Vector3 startPos;
+
+    private void Start() {
+        startPos = transform.position;
+    }
 
     void Update()
     {
         MoveProjectile(); 
+        DetectFireDistance();
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Enemy")) {
             Instantiate(particleOnHitPrefab, transform.position, transform.rotation);
             other.gameObject.GetComponent<EnemyHealth>().TakeDamage(weaponInfo.damageAmount);
+            Destroy(gameObject);
+        }
+    }
+
+    public void DetectFireDistance() {
+        if (Vector3.Distance(transform.position, startPos) > weaponInfo.weaponRange) {
             Destroy(gameObject);
         }
     }

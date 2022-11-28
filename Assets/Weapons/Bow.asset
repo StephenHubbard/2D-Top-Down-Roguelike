@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   damageAmount: 1
-  weaponRange: 12
-  weaponPrefab: {fileID: 806664431297299675, guid: fcf5b32a33e56e546be9d1d1973e01a4, type: 3}
+  weaponRange: 10
+  weaponCooldown: 0.1
   inventorySlotSprite: {fileID: 21300000, guid: ef99535889b42464897f5a053a033428, type: 3}

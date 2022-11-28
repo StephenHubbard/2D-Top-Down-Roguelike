@@ -23,22 +23,18 @@ public class MagicLaser : MonoBehaviour
         LaserFaceMouse();
 
         AudioManager.instance.Play("Laser Fire");
+
     }
     
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<Indestructible>()) {
             isGrowing = false;
-
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.right, Mathf.Infinity, undestructibleLayerMask);
-
-            Instantiate(projectileParticleFX, hit.point, transform.rotation);
         }
     }
 
     public void UpdateLaserRange(float laserRange) {
         this.laserRange = laserRange;
         StartCoroutine(IncreaseLaserLengthCo());
-        capsuleCollider.size = new Vector2(laserRange, capsuleCollider.size.y);
     }
 
     private void LaserFaceMouse() {
@@ -68,6 +64,8 @@ public class MagicLaser : MonoBehaviour
 
             yield return null;    
         }
+
+        Time.timeScale = 1f;
 
         StartCoroutine(SlowFadeCo());
     }

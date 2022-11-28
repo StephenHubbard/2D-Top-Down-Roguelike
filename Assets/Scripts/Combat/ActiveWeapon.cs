@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ActiveWeapon : MonoBehaviour
 {
-    [SerializeField] private float timeBetweenAttacks = 1f;
     [SerializeField] private PolygonCollider2D weaponTriggerCollider;
     [SerializeField] private Transform animSpawnPointPivot;
     [SerializeField] private MonoBehaviour activeWeapon = null;
 
     private bool isAttacking = true;
+    private float timeBetweenAttacks;
 
     private void OnEnable() {
         isAttacking = true;
@@ -36,6 +36,11 @@ public class ActiveWeapon : MonoBehaviour
                 break;
             }
         };
+
+        isAttacking = true;
+        StopAllCoroutines();
+        StartCoroutine(TimeBetweenAttacksCo());
+        timeBetweenAttacks = (activeWeapon as IWeapon).ReturnWeaponInfo().weaponCooldown;
     }
 
     public void WeaponNull() {
