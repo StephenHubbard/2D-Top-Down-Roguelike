@@ -67,7 +67,6 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
             PlayerController.instance.canMove = false;
             myAnimator.SetTrigger("death");
-            // StartCoroutine(DisableCapsuleColliderCo());
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
             GetComponent<CapsuleCollider2D>().enabled = false;
@@ -78,22 +77,16 @@ public class PlayerHealth : MonoBehaviour
         } 
     }
 
-    private IEnumerator DisableCapsuleColliderCo() {
-        yield return new WaitForSeconds(.3f);
-        rb.velocity = Vector2.zero;
-        rb.isKinematic = true;
-        GetComponent<CapsuleCollider2D>().enabled = false;
-    }
-
-
     public void TakeDamage(int damage) {
-        spriteRenderer.material = whiteFlashMat;
-        currentHealth -= damage;
-        canTakeDamage = false;
-        UpdateHealthSlider();
-        StartCoroutine(SetDefaultMatRoutine());
-        StartCoroutine(DamageRecoveryTimeRoutine());
-        CheckIfDeath();
+        if (canTakeDamage) {
+            spriteRenderer.material = whiteFlashMat;
+            currentHealth -= damage;
+            canTakeDamage = false;
+            UpdateHealthSlider();
+            StartCoroutine(SetDefaultMatRoutine());
+            StartCoroutine(DamageRecoveryTimeRoutine());
+            CheckIfDeath();
+        }
     }
 
     public void HealSelf(int amount) {

@@ -27,10 +27,12 @@ public class EnemyAI : MonoBehaviour
     private State state;
     private bool canAttack = true;
     private float timeRoaming = 0f;
+    private PlayerHealth playerHealth;
 
     private void Awake() {
         pathfindingMovement = GetComponent<EnemyPathfindingMovement>();
         state = State.Roaming;
+        playerHealth = FindObjectOfType<PlayerHealth>();
     }
 
     private void Start() {
@@ -86,7 +88,7 @@ public class EnemyAI : MonoBehaviour
             break;
 
         case State.Attacking:
-            if (attackRange != 0 && canAttack) {
+            if (attackRange != 0 && canAttack && !playerHealth.isDead) {
                 GetComponent<EnemyPathfindingMovement>().AllowedToMoveToggle(false);
                 (enemyType as IEnemy).Attack();
                 canAttack = false;
@@ -99,10 +101,6 @@ public class EnemyAI : MonoBehaviour
             break;
         }
 
-        if (PlayerController.instance.GetComponent<PlayerHealth>().isDead) {
-            state = State.Roaming;
-            StartCoroutine(RoamingCo());
-        }
     }
 
     private IEnumerator AttackCooldownCo() {
