@@ -17,6 +17,12 @@ public class Stamina : MonoBehaviour
         currentStamina = 3;
     }
 
+    private void Start() {
+        if (staminaContainer == null) {
+            staminaContainer = GameObject.Find("Stamina Container").transform;
+        }
+    }
+
     private IEnumerator RefreshStaminaCD() {
         while (true)
         {

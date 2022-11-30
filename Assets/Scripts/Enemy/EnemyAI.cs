@@ -64,13 +64,13 @@ public class EnemyAI : MonoBehaviour
 
         case State.ChaseTarget:
 
-            if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < attackRange) {
+            if (Vector3.Distance(transform.position, PlayerController.Instance.GetPosition()) < attackRange) {
                 state = State.Attacking;
             }
 
-            pathfindingMovement.MoveTo(PlayerController.instance.GetPosition());
+            pathfindingMovement.MoveTo(PlayerController.Instance.GetPosition());
 
-            if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) > stopChaseDistance) {
+            if (Vector3.Distance(transform.position, PlayerController.Instance.GetPosition()) > stopChaseDistance) {
                 state = State.GoingBackToStart;
             }
             break;
@@ -122,8 +122,8 @@ public class EnemyAI : MonoBehaviour
 
     public void FindTarget() {
         timeRoaming = 0f;
-        if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < targetChaseRange && 
-            Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) > attackRange) {
+        if (Vector3.Distance(transform.position, PlayerController.Instance.GetPosition()) < targetChaseRange && 
+            Vector3.Distance(transform.position, PlayerController.Instance.GetPosition()) > attackRange) {
             state = State.ChaseTarget;
         } 
     }

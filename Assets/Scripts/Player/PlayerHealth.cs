@@ -45,12 +45,16 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void Start() {
+        if (healthSlider == null) {
+            healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
+        }
+
         healthSlider.maxValue = startingHealth;
     }
 
     private void OnCollisionStay2D(Collision2D other) { 
         if (other.gameObject.CompareTag("Enemy") && canTakeDamage && currentHealth > 0) {
-            AudioManager.instance.Play("Hero Take Damage");
+            AudioManager.Instance.Play("Hero Take Damage");
             EnemyAI enemy = other.gameObject.GetComponent<EnemyAI>();
             TakeDamage(enemy.damageDoneToHero);
             GetComponent<KnockBack>().getKnockedBack(other.gameObject.transform, enemy.enemyKnockBackThrust);
@@ -65,15 +69,15 @@ public class PlayerHealth : MonoBehaviour
     public void CheckIfDeath() {
         if (currentHealth <= 0 && !isDead) {
             isDead = true;
-            PlayerController.instance.canMove = false;
+            PlayerController.Instance.canMove = false;
             myAnimator.SetTrigger("death");
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
             GetComponent<CapsuleCollider2D>().enabled = false;
             GameObject deathFXgo = Instantiate(deathVFXPrefab, transform.position + new Vector3(0, -1, 0), transform.rotation);
             deathFXgo.transform.SetParent(this.transform);
-            AudioManager.instance.Play("Player Death");
-            AudioManager.instance.StopMusic();
+            AudioManager.Instance.Play("Player Death");
+            AudioManager.Instance.StopMusic();
         } 
     }
 

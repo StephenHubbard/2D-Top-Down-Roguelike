@@ -31,9 +31,9 @@ public class Pickup : MonoBehaviour
 
     private void Update()
     {
-        if (Vector3.Distance(transform.position, PlayerController.instance.GetPosition()) < pickUpDistance) {
+        if (Vector3.Distance(transform.position, PlayerController.Instance.GetPosition()) < pickUpDistance) {
             moveSpeed += .1f;
-            moveDir = (PlayerController.instance.GetPosition() - transform.position).normalized;
+            moveDir = (PlayerController.Instance.GetPosition() - transform.position).normalized;
         } else {
             moveDir = Vector3.zero;
         }
@@ -73,17 +73,17 @@ public class Pickup : MonoBehaviour
             default:
             case PickupType.healthGlobe:
                 PlayerHealth.instance.HealSelf(healGlobeAmount);
-                AudioManager.instance.Play("Health Globe");
+                AudioManager.Instance.Play("Health Globe");
             break;
 
             case PickupType.staminaGlobe:
                 Stamina.instance.RefreshStamina();
-                AudioManager.instance.Play("Stamina Globe");
+                AudioManager.Instance.Play("Stamina Globe");
             break;
 
             case PickupType.goldCoin:
                 EconomyManager.instance.ChangeCurrentGold(1);
-                AudioManager.instance.Play("Coin");
+                AudioManager.Instance.Play("Coin");
             break;
         }
     }

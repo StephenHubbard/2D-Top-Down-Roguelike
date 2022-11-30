@@ -22,7 +22,7 @@ public class MagicLaser : MonoBehaviour
     private void Start() {
         LaserFaceMouse();
 
-        AudioManager.instance.Play("Laser Fire");
+        AudioManager.Instance.Play("Laser Fire");
 
     }
     

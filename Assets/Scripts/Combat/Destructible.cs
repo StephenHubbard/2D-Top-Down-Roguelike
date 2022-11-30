@@ -17,7 +17,7 @@ public class Destructible : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Player")) {
             GetComponent<Booty>().DropItems();
-            AudioManager.instance.Play(destroyStringSFX);
+            AudioManager.Instance.Play(destroyStringSFX);
             Instantiate(destroyVFX, transform.position, transform.rotation);
             if (other.gameObject.GetComponent<Projectile>()) {
                 other.gameObject.GetComponent<Projectile>().InstantiateParticleFX();

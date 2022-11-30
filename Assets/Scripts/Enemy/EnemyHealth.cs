@@ -38,9 +38,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
     public void TakeDamage(int damage) {
-        AudioManager.instance.Play(enemyHitStringSFX);
+        AudioManager.Instance.Play(enemyHitStringSFX);
         canTakeDamage = false;
-        knockBack.getKnockedBack(PlayerController.instance.transform, 15f);
+        knockBack.getKnockedBack(PlayerController.Instance.transform, 15f);
         StartCoroutine(DamageRecoveryTimeRoutine());
         currentHealth -= damage;
         spriteRenderer.material = matWhiteFlash;
@@ -51,7 +51,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0) {
             GameObject deathVFX = Instantiate(deathVFXPrefab, transform.position, transform.rotation);
             GetComponent<Booty>().DropItems();
-            AudioManager.instance.Play(enemyDeathStringSFX);
+            AudioManager.Instance.Play(enemyDeathStringSFX);
             Destroy(gameObject);
         }
     }

@@ -22,7 +22,7 @@ public class Sword : MonoBehaviour, IWeapon
     }
 
     private void Start() {
-        playerPos = PlayerController.instance.transform;
+        playerPos = PlayerController.Instance.transform;
         weaponTriggerCollider = GameObject.Find("WeaponTriggerCollider").GetComponent<PolygonCollider2D>();
         slashProjectileSpawnPoint = GameObject.Find("SlashProjectileSpawnPoint").transform;
     }
@@ -61,19 +61,19 @@ public class Sword : MonoBehaviour, IWeapon
     public void Attack()
     {
         myAnimator.SetTrigger("Attack");
-        slashAnim = Instantiate(slashAnimPrefab, PlayerController.instance.transform.position, transform.rotation);
-        slashAnim.transform.SetParent(PlayerController.instance.transform);
+        slashAnim = Instantiate(slashAnimPrefab, PlayerController.Instance.transform.position, transform.rotation);
+        slashAnim.transform.SetParent(PlayerController.Instance.transform);
         weaponTriggerCollider.enabled = true;
         GameObject slashPrefab = Instantiate(slashProjectilePrefab, slashProjectileSpawnPoint.position, activeWeapon.ReturnAnimSpawnPoint().rotation);
         slashPrefab.GetComponent<Projectile>().UpdateWeaponInfo(weaponInfo);
-        AudioManager.instance.Play("Sword Slash");
+        AudioManager.Instance.Play("Sword Slash");
     }
 
     public void SwingUpFlipAnim() {
         if (slashAnim == null) { return; }
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180, 0, 0);
 
-        if (PlayerController.instance.facingLeft) {
+        if (PlayerController.Instance.facingLeft) {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
@@ -82,7 +82,7 @@ public class Sword : MonoBehaviour, IWeapon
         if (slashAnim == null) { return; }
         slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        if (PlayerController.instance.facingLeft) {
+        if (PlayerController.Instance.facingLeft) {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;
         }
     }

@@ -19,7 +19,7 @@ public class Staff : MonoBehaviour, IWeapon
     }
 
     private void Start() {
-        playerPos = PlayerController.instance.transform;
+        playerPos = PlayerController.Instance.transform;
     }
 
     private void OnEnable() {

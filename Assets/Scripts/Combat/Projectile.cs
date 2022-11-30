@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
 
     public void InstantiateParticleFX() {
         Instantiate(particleOnHitPrefab, transform.position, transform.rotation);
-        AudioManager.instance.Play("Slash Projectile Collide");
+        AudioManager.Instance.Play("Slash Projectile Collide");
         Destroy(gameObject);
     }
 

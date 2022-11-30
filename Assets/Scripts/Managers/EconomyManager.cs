@@ -16,6 +16,10 @@ public class EconomyManager : MonoBehaviour
     }
 
     private void Update() {
+        if (goldText == null) {
+            goldText = GameObject.Find("Coin Amount Text").GetComponent<TMP_Text>();
+        }
+
         goldText.text = currentGold.ToString();
     }
 

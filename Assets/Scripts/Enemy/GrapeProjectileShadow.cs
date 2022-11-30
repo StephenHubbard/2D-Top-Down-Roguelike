@@ -8,7 +8,7 @@ public class GrapeProjectileShadow : MonoBehaviour
 
     public void SetFloatDuration(float duration) {
         this.duration = duration;
-        StartCoroutine(MoveTowardsProjectileTargetCo(transform.position, PlayerController.instance.GetPosition()));
+        StartCoroutine(MoveTowardsProjectileTargetCo(transform.position, PlayerController.Instance.GetPosition()));
     }
 
     private IEnumerator MoveTowardsProjectileTargetCo(Vector3 start, Vector3 target) {

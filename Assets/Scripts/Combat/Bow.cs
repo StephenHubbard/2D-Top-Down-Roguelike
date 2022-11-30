@@ -30,7 +30,7 @@ public class Bow : MonoBehaviour, IWeapon
         myAnimator.SetTrigger("Fire");
         GameObject newArrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, activeWeapon.transform.rotation);
         newArrow.GetComponent<Projectile>().UpdateWeaponInfo(weaponInfo);
-        AudioManager.instance.Play("Bow Fire");
+        AudioManager.Instance.Play("Bow Fire");
     }
 
     public void DoneAttack() {

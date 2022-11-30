@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Singleton<PlayerController>
 {
-    public static PlayerController instance { get; private set; }
+    // public static PlayerController instance { get; private set; }
     public bool facingLeft = false;
     public bool canMove = true;
 
@@ -26,8 +26,9 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth playerHealth;
 
 
-    private void Awake() {
-        instance = this;
+    protected override void Awake() {
+        // instance = this;
+        base.Awake();
 
         knockBack = GetComponent<KnockBack>();
         stamina = GetComponent<Stamina>();
@@ -104,7 +105,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator EndDashCo() {
-        AudioManager.instance.Play("Dash");
+        AudioManager.Instance.Play("Dash");
         yield return new WaitForSeconds(dashTime);
         moveSpeed = moveSpeed / dashSpeed;
         myTrailRenderer.emitting = false;

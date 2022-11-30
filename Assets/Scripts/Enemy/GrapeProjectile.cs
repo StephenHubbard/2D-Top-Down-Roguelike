@@ -15,8 +15,8 @@ public class GrapeProjectile : MonoBehaviour
     private void Start() {
         GameObject shadow = Instantiate(grapeProjectileShadow, transform.position + new Vector3(0, -.3f, 0), transform.rotation);
         shadow.GetComponent<GrapeProjectileShadow>().SetFloatDuration(duration);
-        StartCoroutine(CurveSpawnCo(transform.position, PlayerController.instance.GetPosition()));
-        AudioManager.instance.Play("Grape Shoot");
+        StartCoroutine(CurveSpawnCo(transform.position, PlayerController.Instance.GetPosition()));
+        AudioManager.Instance.Play("Grape Shoot");
     }
 
     private IEnumerator CurveSpawnCo(Vector3 start, Vector3 target) {
@@ -35,7 +35,7 @@ public class GrapeProjectile : MonoBehaviour
 
         Instantiate(vfxOnHitPrefab, transform.position, transform.rotation);
         Instantiate(splatterPrefab, transform.position, transform.rotation);
-        AudioManager.instance.Play("Slime Death");
+        AudioManager.Instance.Play("Slime Death");
         Destroy(gameObject);
     }
 }

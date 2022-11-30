@@ -11,6 +11,10 @@ public class ActiveInventory : MonoBehaviour
     private WeaponInfo itemToEquip;
 
     private void Start() {
+        if (activeInventoryContainer == null) {
+            activeInventoryContainer = GameObject.Find("Active Inventory").transform;
+        }
+
         ChangeActiveWeapon();
     }
 
@@ -54,24 +58,24 @@ public class ActiveInventory : MonoBehaviour
         if (activeSlotIndexNum <= 2) {
             ChangeActiveWeapon();
         } else {
-            foreach (Transform availableWeapons in PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform)
+            foreach (Transform availableWeapons in PlayerController.Instance.transform.GetComponentInChildren<ActiveWeapon>().transform)
             {
                 availableWeapons.gameObject.SetActive(false);
             }
 
-            PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().WeaponNull();
+            PlayerController.Instance.transform.GetComponentInChildren<ActiveWeapon>().WeaponNull();
         }
     }
 
     private void ChangeActiveWeapon() {
-        foreach (Transform availableWeapons in PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform)
+        foreach (Transform availableWeapons in PlayerController.Instance.transform.GetComponentInChildren<ActiveWeapon>().transform)
         {
             availableWeapons.gameObject.SetActive(false);
         }
 
-        PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().transform.GetChild(activeSlotIndexNum).gameObject.SetActive(true);
+        PlayerController.Instance.transform.GetComponentInChildren<ActiveWeapon>().transform.GetChild(activeSlotIndexNum).gameObject.SetActive(true);
         
-        PlayerController.instance.transform.GetComponentInChildren<ActiveWeapon>().NewWeapon();
+        PlayerController.Instance.transform.GetComponentInChildren<ActiveWeapon>().NewWeapon();
         
     }
 }

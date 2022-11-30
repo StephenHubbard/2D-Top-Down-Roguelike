@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Gamedev.tv
-  productName: 2D Top Down Action RPG Course - Prototype
+  productName: 2D Top Down Action RPG Course
   defaultCursor: {fileID: 2800000, guid: effb6f22cbde7354d8db3797193a2c81, type: 3}
   cursorHotspot: {x: 128, y: 128}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}

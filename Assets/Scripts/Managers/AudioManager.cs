@@ -4,24 +4,24 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] private AudioMixerGroup musicMixerGroup;
     [SerializeField] private AudioMixerGroup sfxMixerGroup;
     
     public Sound[] sounds;
 
-    public static AudioManager instance;
+    // public static AudioManager instance;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
+        // if (instance == null) {
+        //     instance = this;
+        // } else {
+        //     Destroy(gameObject);
+        // }
 
-        if (instance == null) {
-            instance = this;
-        } else {
-            Destroy(gameObject);
-        }
-
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
@@ -52,8 +52,6 @@ public class AudioManager : MonoBehaviour
     }
 
     public void Play (string name) {
-
-
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null) {
             Debug.LogWarning(("Sound: " + name + " not found!"));

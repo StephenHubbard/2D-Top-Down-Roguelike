@@ -10,7 +10,7 @@ public class AudioOptionsManager : MonoBehaviour
     private void Start() {
         musicVolume = PlayerPrefs.GetFloat("Music Volume", 0.7f);
         sfxVolume = PlayerPrefs.GetFloat("SFX Volume", 0.7f);
-        AudioManager.instance.UpdateMixerVolume();
+        AudioManager.Instance.UpdateMixerVolume();
         
         // Options Menu
         // StartingMenu.instance.UpdateMusicVolume(musicVolume);
@@ -19,13 +19,13 @@ public class AudioOptionsManager : MonoBehaviour
 
     public void OnMusicSliderValueChange(float value) {
         musicVolume = value;
-        AudioManager.instance.UpdateMixerVolume();
+        AudioManager.Instance.UpdateMixerVolume();
         PlayerPrefs.SetFloat("Music Volume", value);
     }
 
     public void OnSFXSliderValueChange(float value) {
         sfxVolume = value;
-        AudioManager.instance.UpdateMixerVolume();
+        AudioManager.Instance.UpdateMixerVolume();
         PlayerPrefs.SetFloat("SFX Volume", value);
     }
 }
