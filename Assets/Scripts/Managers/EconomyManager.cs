@@ -7,7 +7,7 @@ public class EconomyManager : MonoBehaviour
 {
     public static EconomyManager instance { get; private set; }
 
-    [SerializeField] private TMP_Text goldText;
+    private TMP_Text goldText;
 
     private int currentGold = 0;
 

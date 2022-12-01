@@ -31,8 +31,6 @@ public class UIFade : Singleton<UIFade>
     // Used in Area Entrance/Exit Scripts
     public void FadeToClear()
     {
-        Debug.Log("hit");
-
         if (fadeRoutine != null) {
             StopCoroutine(fadeRoutine);
         }

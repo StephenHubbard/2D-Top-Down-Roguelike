@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AreaEntrance : MonoBehaviour 
 {
-    public string transitionName;
-
+    [SerializeField] private string transitionName;
     [SerializeField] private float moveSpeedWaitTime = .5f;
+    [SerializeField] private string musicString;
 
     private void Start() {  
         if (PlayerController.Instance != null) {
@@ -19,6 +19,15 @@ public class AreaEntrance : MonoBehaviour
                 }
             }
         }
+        AudioManager.Instance.PlaySceneMusic();
+    }
+
+    public string ReturnMusicString() {
+        return musicString;
+    }
+
+    public string ReturnTransitionName() {
+        return transitionName;
     }
 
     private IEnumerator HeroMoveDelayRoutine() {

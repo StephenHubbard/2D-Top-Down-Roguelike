@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneManagement : Singleton<SceneManagement>
 {
-    private string sceneTransitionName;
+    public string sceneTransitionName;
 
     public string ReturnSceneTransitionName() {
         return sceneTransitionName;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActiveInventory : MonoBehaviour
 {
-    [SerializeField] private Transform activeInventoryContainer;
+    private Transform activeInventoryContainer;
 
     private int activeSlotIndexNum = 0;
 

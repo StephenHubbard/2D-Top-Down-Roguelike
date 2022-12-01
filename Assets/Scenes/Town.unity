@@ -123,23 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &297060540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8731343084044545296, guid: 9d0183b057ca7e64aba42d9a4d3b2e50, type: 3}
-  m_PrefabInstance: {fileID: 701542311}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &297060542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297060540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e22726ff7f8e394fbb7da16ef7ed783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &701542311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -703,6 +686,10 @@ PrefabInstance:
     - target: {fileID: 3151953958952887467, guid: f8e35fcac66a03247b25b20baeee12b6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 3151953958952887468, guid: f8e35fcac66a03247b25b20baeee12b6, type: 3}
+      propertyPath: musicString
+      value: Town Music
       objectReference: {fileID: 0}
     - target: {fileID: 3151953958952887468, guid: f8e35fcac66a03247b25b20baeee12b6, type: 3}
       propertyPath: transitionName

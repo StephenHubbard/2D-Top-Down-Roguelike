@@ -11,17 +11,8 @@ public class AudioManager : Singleton<AudioManager>
     
     public Sound[] sounds;
 
-    // public static AudioManager instance;
-
     protected override void Awake() {
         base.Awake();
-        // if (instance == null) {
-        //     instance = this;
-        // } else {
-        //     Destroy(gameObject);
-        // }
-
-        // DontDestroyOnLoad(gameObject);
 
         foreach (Sound s in sounds)
         {
@@ -44,8 +35,23 @@ public class AudioManager : Singleton<AudioManager>
     }
 
     private void Start() {
-        Play("Theme Music");
+        PlaySceneMusic();
     }
+
+    public void PlaySceneMusic() {
+        StopAllAudio();
+
+        Play(FindObjectOfType<AreaEntrance>().ReturnMusicString());
+    }
+
+    public void StopAllAudio() {
+        AudioSource[] allAudioSources = GetComponents<AudioSource>();
+        
+        foreach( AudioSource audioS in allAudioSources) {
+            audioS.Stop();
+        }
+    }
+
 
     public void StopMusic() {
         musicMixerGroup.audioMixer.SetFloat("Music Volume", -80f);

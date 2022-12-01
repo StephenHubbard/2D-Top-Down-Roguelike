@@ -13,7 +13,8 @@ public class AreaExit : MonoBehaviour
     private bool shouldLoadAfterFade; 
 
     private void Start() {
-        theEntrance.transitionName = sceneTransitionName;
+        string sceneTransitionNameString = theEntrance.ReturnTransitionName();
+        sceneTransitionNameString = sceneTransitionName;
     }
 
     private void Update() { 
