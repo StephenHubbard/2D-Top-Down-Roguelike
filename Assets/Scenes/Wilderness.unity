@@ -79312,10 +79312,6 @@ PrefabInstance:
       propertyPath: staminaContainer
       value: 
       objectReference: {fileID: 1233307360}
-    - target: {fileID: 1250551853249303517, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1250551853333415469, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
       propertyPath: m_Name
       value: Player
@@ -79364,18 +79360,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1250551853459818195, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1476935622550488517, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 1200479523}
-    - target: {fileID: 1893495358541920357, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b5a1a9a4d3558b46984f02973aa65dc, type: 3}
 --- !u!1001 &3145350621368424155

@@ -808,10 +808,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Water_Up_19: -1469189684
+      Water_Up_16: -713557389
       Water_Up_14: -1072428752
       Water_Up_23: 305400266
-      Water_Up_21: -393115080
       Water_Up_25: 582532134
       Water_Up_20: -1141391387
       Water_Up_6: -1449855292
@@ -822,6 +821,7 @@ TextureImporter:
       Water_Up_9: -660444007
       Water_Up_15: -1328004220
       Water_Up_2: -134256823
+      Water_Up_19: -1469189684
       Water_Up_0: -1673940480
       Water_Up_10: -93481976
       Water_Up_22: 154850385
@@ -840,7 +840,7 @@ TextureImporter:
       Water_Up_32: -1296868833
       Water_Up_4: -991024265
       Water_Up_11: -1438496388
-      Water_Up_16: -713557389
+      Water_Up_21: -393115080
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

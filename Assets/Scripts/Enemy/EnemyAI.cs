@@ -38,6 +38,7 @@ public class EnemyAI : MonoBehaviour
     private void Start() {
         startingPosition = transform.position;
         roamPosition = GetRoamingPosition();
+        StartCoroutine(RoamingCo());
     }
    
 
@@ -111,7 +112,7 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator RoamingCo() {
         while (state == State.Roaming)
         {
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(Random.Range(3f, 4f));
             roamPosition = GetRoamingPosition();
         }
     }

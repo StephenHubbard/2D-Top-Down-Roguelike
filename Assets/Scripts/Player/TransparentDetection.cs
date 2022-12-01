@@ -8,6 +8,8 @@ public class TransparentDetection : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] private float transparencyAmount = .8f;
 
+    [SerializeField] private Sprite[] spritesToFade;
+
     private Tilemap tilemap;
     private SpriteRenderer spriteRenderer;
 
