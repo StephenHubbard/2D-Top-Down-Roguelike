@@ -16,7 +16,11 @@ public class Booty : MonoBehaviour
         } else if (randomNum == 2 && isEnemy) {
             Instantiate(staminaGlobe, transform.position, transform.rotation);
         } else if (randomNum == 3) {
-            Instantiate(goldCoin, transform.position, transform.rotation);
+            int randomAmountOfGold = Random.Range(1, 4);
+            for (int i = 0; i < randomAmountOfGold; i++)
+            {
+                Instantiate(goldCoin, transform.position, transform.rotation);
+            }
         }
     }
 }
