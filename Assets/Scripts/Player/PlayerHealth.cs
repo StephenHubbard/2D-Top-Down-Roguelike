@@ -58,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
             EnemyAI enemy = other.gameObject.GetComponent<EnemyAI>();
             TakeDamage(enemy.damageDoneToHero);
             GetComponent<KnockBack>().getKnockedBack(other.gameObject.transform, enemy.enemyKnockBackThrust);
-            ScreenShakeManager.instance.ShakeScreen();
+            ScreenShakeManager.Instance.ShakeScreen();
         }
     }
 
@@ -102,6 +102,10 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void UpdateHealthSlider() {
+        if (healthSlider == null) {
+            healthSlider = GameObject.Find("Health Slider").GetComponent<Slider>();
+        }
+
         healthSlider.value = currentHealth;
     }
 

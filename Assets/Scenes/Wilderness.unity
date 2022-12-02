@@ -78708,7 +78708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067662339}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.080497, y: 11.354448, z: -8.438328}
+  m_LocalPosition: {x: 4.080497, y: 11.354448, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79299,6 +79299,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2414674187685833047, guid: 9a1a600b136810549b773f2e815dd0fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1a600b136810549b773f2e815dd0fb, type: 3}
 --- !u!1001 &1250551851927088536
@@ -79430,6 +79434,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2067662340}
     m_Modifications:
+    - target: {fileID: 3151953958952887467, guid: f8e35fcac66a03247b25b20baeee12b6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.356
+      objectReference: {fileID: 0}
     - target: {fileID: 3151953958952887468, guid: f8e35fcac66a03247b25b20baeee12b6, type: 3}
       propertyPath: musicString
       value: Wilderness Music

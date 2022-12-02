@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : Singleton<PlayerController>
 {
-    // public static PlayerController instance { get; private set; }
     public bool facingLeft = false;
     public bool canMove = true;
 
@@ -25,9 +24,7 @@ public class PlayerController : Singleton<PlayerController>
     private Stamina stamina;
     private PlayerHealth playerHealth;
 
-
     protected override void Awake() {
-        // instance = this;
         base.Awake();
 
         knockBack = GetComponent<KnockBack>();

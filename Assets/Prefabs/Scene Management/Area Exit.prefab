@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3151953958952887466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.33, y: -0.12, z: 0}
+  m_LocalPosition: {x: 1.79, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fb68f8912ea9f540a73ba5dd1cdf871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionName: 
+  transitionName: Town Entrance
   moveSpeedWaitTime: 0.5
+  musicString: Town Music
 --- !u!1 &3151953960632643097
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,5 +121,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theEntrance: {fileID: 3151953958952887468}
   waitToLoad: 1
-  sceneToLoad: 
-  sceneTransitionName: 
+  sceneToLoad: Wilderness
+  sceneTransitionName: Wilderness_1

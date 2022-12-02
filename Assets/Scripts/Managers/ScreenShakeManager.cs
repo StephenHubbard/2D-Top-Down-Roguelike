@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class ScreenShakeManager : MonoBehaviour
+public class ScreenShakeManager : Singleton<ScreenShakeManager>
 {
     public static ScreenShakeManager instance { get; private set; }
 
-    private CinemachineImpulseSource source;
+    public CinemachineImpulseSource source;
 
-    private void Awake() {
-        instance = this;
-
+    private void Start() {
         source = GetComponent<CinemachineImpulseSource>();
     }
 

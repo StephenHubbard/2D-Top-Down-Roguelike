@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6601286159805007442}
   - component: {fileID: 6601286159805007441}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: Audio Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,6 +191,14 @@ MonoBehaviour:
     volume: 0.3
     pitch: 1
     source: {fileID: 0}
+  - audioType: 0
+    name: Male Grunt
+    clips:
+    - {fileID: 8300000, guid: fb3bead5eb08ac3458c61e98fb8af279, type: 3}
+    loop: 0
+    volume: 0.6
+    pitch: 1
+    source: {fileID: 0}
 --- !u!1 &6601286160202635784
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +210,7 @@ GameObject:
   - component: {fileID: 6601286160202635783}
   - component: {fileID: 6601286160202635782}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: Input Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +254,7 @@ GameObject:
   - component: {fileID: 6601286160665098200}
   - component: {fileID: 6601286160665098199}
   m_Layer: 0
-  m_Name: InventoryManager
+  m_Name: Inventory Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,7 +298,7 @@ GameObject:
   - component: {fileID: 6601286160974620406}
   - component: {fileID: 6601286160974620405}
   m_Layer: 0
-  m_Name: EconomyManager
+  m_Name: Economy Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +393,7 @@ GameObject:
   - component: {fileID: 6601286161655607009}
   - component: {fileID: 6601286161655607010}
   m_Layer: 0
-  m_Name: ScreenShakeManager
+  m_Name: Screen Shake Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
