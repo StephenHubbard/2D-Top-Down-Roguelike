@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpDistance: 3
   moveSpeed: 0.1
-  pickupType: 1
+  pickupType: 2
   healGlobeAmount: 1
   animCurve:
     serializedVersion: 2

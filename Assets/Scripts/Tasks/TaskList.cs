@@ -21,6 +21,7 @@ public class TaskList : MonoBehaviour
     }
 
     public void CompleteTask() {
+        Debug.Log("check mark active");
         checkMark.SetActive(true);
     }
 }

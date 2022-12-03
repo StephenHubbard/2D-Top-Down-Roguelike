@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    #region Private Variables 
+    public enum EnemyType {
+        None, 
+        Grape, 
+        Slime,
+    }
 
+    [SerializeField] private EnemyType enemyType;
     [SerializeField] private int startingHealth = 3;
     [SerializeField] private int currentHealth;
     [SerializeField] private Rigidbody2D rb;
@@ -21,7 +26,6 @@ public class EnemyHealth : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private KnockBack knockBack;
 
-    #endregion
 
     private void Awake() {
         knockBack = GetComponent<KnockBack>();
@@ -52,7 +56,21 @@ public class EnemyHealth : MonoBehaviour
             GameObject deathVFX = Instantiate(deathVFXPrefab, transform.position, transform.rotation);
             GetComponent<Booty>().DropItems();
             AudioManager.Instance.Play(enemyDeathStringSFX);
+            QuestUpdate();
             Destroy(gameObject);
+        }
+    }
+
+    private void QuestUpdate() {
+        foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
+        {
+            if (task.taskGoal.goalType == TaskGoal.GoalType.Kill && task.isActive) {
+                task.taskGoal.EnemyKilled(enemyType);
+            }
+
+            if (task.taskGoal.IsReached() && task.isActive) {
+                task.TaskComplete();
+            }
         }
     }
 

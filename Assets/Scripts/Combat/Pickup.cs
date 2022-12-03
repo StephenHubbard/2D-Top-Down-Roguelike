@@ -5,9 +5,10 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     public enum PickupType {
-        healthGlobe, 
-        staminaGlobe,
-        goldCoin,
+        None,
+        HealthGlobe, 
+        StaminaGlobe,
+        GoldCoin,
     }
 
     [SerializeField] private float pickUpDistance = 5f;
@@ -85,17 +86,17 @@ public class Pickup : MonoBehaviour
         switch (pickupType)
         {
             default:
-            case PickupType.healthGlobe:
+            case PickupType.HealthGlobe:
                 PlayerHealth.Instance.HealSelf(healGlobeAmount);
                 AudioManager.Instance.Play("Health Globe");
             break;
 
-            case PickupType.staminaGlobe:
+            case PickupType.StaminaGlobe:
                 Stamina.instance.RefreshStamina();
                 AudioManager.Instance.Play("Stamina Globe");
             break;
 
-            case PickupType.goldCoin:
+            case PickupType.GoldCoin:
                 EconomyManager.Instance.ChangeCurrentGold(1);
                 AudioManager.Instance.Play("Coin");
             break;

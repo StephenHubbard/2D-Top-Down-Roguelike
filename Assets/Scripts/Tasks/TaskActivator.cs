@@ -5,7 +5,8 @@ using UnityEngine;
 public class TaskActivator : MonoBehaviour
 {   
     [SerializeField] private Task task;
-    [SerializeField] private GameObject exclamationPoint;
+    [SerializeField] private GameObject exclamationPointTaskIcon;
+    [SerializeField] private GameObject questionMarkTaskIcon;
 
     private TaskManager taskManager;
 
@@ -22,9 +23,10 @@ public class TaskActivator : MonoBehaviour
         }
     }
 
+
     public void ActiveTask() {
         task.isActive = true;
-        exclamationPoint.SetActive(false);
+        exclamationPointTaskIcon.SetActive(false);
     }
 
     public Task ReturnTask() {
