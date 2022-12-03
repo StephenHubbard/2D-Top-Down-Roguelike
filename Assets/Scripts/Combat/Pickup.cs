@@ -48,7 +48,21 @@ public class Pickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.GetComponent<PlayerController>()) {
             DetectPickUpType();
+            QuestUpdate();
             Destroy(gameObject);
+        }
+    }
+
+    private void QuestUpdate() {
+        foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
+        {
+            if (task.taskGoal.goalType == TaskGoal.GoalType.Gather && task.isActive) {
+                task.taskGoal.ItemGathered(pickupType);
+            }
+
+            if (task.taskGoal.IsReached() && task.isActive) {
+                task.TaskComplete();
+            }
         }
     }
 
@@ -72,7 +86,7 @@ public class Pickup : MonoBehaviour
         {
             default:
             case PickupType.healthGlobe:
-                PlayerHealth.instance.HealSelf(healGlobeAmount);
+                PlayerHealth.Instance.HealSelf(healGlobeAmount);
                 AudioManager.Instance.Play("Health Globe");
             break;
 
@@ -82,7 +96,7 @@ public class Pickup : MonoBehaviour
             break;
 
             case PickupType.goldCoin:
-                EconomyManager.instance.ChangeCurrentGold(1);
+                EconomyManager.Instance.ChangeCurrentGold(1);
                 AudioManager.Instance.Play("Coin");
             break;
         }

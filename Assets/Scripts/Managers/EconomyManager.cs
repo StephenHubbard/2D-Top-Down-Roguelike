@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EconomyManager : MonoBehaviour
+public class EconomyManager : Singleton<EconomyManager>
 {
-    public static EconomyManager instance { get; private set; }
-
-    private TMP_Text goldText;
+    [SerializeField] private TMP_Text goldText;
 
     private int currentGold = 0;
-
-    private void Awake() {
-        instance = this;
-    }
 
     private void Update() {
         if (goldText == null) {

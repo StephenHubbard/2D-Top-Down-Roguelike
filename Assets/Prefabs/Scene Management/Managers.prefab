@@ -196,7 +196,15 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: fb3bead5eb08ac3458c61e98fb8af279, type: 3}
     loop: 0
-    volume: 0.6
+    volume: 2
+    pitch: 1
+    source: {fileID: 0}
+  - audioType: 0
+    name: Female Hey
+    clips:
+    - {fileID: 8300000, guid: 203973b9eaa71104e8259aada6b97c69, type: 3}
+    loop: 0
+    volume: 1.833
     pitch: 1
     source: {fileID: 0}
 --- !u!1 &6601286160202635784
@@ -426,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402d9540f70282a4aad719b36960c666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
 --- !u!114 &6601286161655607010
 MonoBehaviour:
   m_ObjectHideFlags: 0

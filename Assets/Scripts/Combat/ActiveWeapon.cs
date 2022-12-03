@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveWeapon : MonoBehaviour
+public class ActiveWeapon : Singleton<ActiveWeapon>
 {
     [SerializeField] private PolygonCollider2D weaponTriggerCollider;
     [SerializeField] private Transform animSpawnPointPivot;
     [SerializeField] private MonoBehaviour activeWeapon = null;
 
     private bool isAttacking = true;
+    private bool isReadingDialogue = false;
     private float timeBetweenAttacks;
 
     private void OnEnable() {
@@ -26,6 +27,14 @@ public class ActiveWeapon : MonoBehaviour
 
     public Transform ReturnAnimSpawnPoint() {
         return animSpawnPointPivot;
+    }
+
+    public void ReadingDialogueToggle(bool isReadingDialogue) {
+        this.isReadingDialogue = isReadingDialogue;
+    }
+
+    public bool ReturnReadingDialogue() {
+        return isReadingDialogue;
     }
 
     public void NewWeapon() {
@@ -52,7 +61,7 @@ public class ActiveWeapon : MonoBehaviour
     }
 
     private void Attack() {
-        if (Input.GetMouseButton(0) && !isAttacking) {
+        if (Input.GetMouseButton(0) && !isAttacking && !isReadingDialogue && !UIManager.Instance.isOverUI) {
             
             if (activeWeapon is IWeapon) {
                 isAttacking = true;

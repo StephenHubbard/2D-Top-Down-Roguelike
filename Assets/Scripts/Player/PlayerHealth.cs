@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : Singleton<PlayerHealth>
 {
     #region Public Variables
 
@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
 
     #region Private Variables
 
-    public static PlayerHealth instance { get; private set; }
     public bool isDead = false;
     
     [SerializeField] private int startingHealth = 3;
@@ -35,8 +34,8 @@ public class PlayerHealth : MonoBehaviour
 
     #region Unity Methods
 
-    private void Awake() {
-        instance = this;
+    protected override void Awake() {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = startingHealth;
