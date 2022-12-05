@@ -64,12 +64,12 @@ public class EnemyHealth : MonoBehaviour
     private void QuestUpdate() {
         foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
         {
-            if (task.taskGoal.goalType == TaskGoal.GoalType.Kill && task.isActive) {
+            if (task.taskGoal.goalType == TaskGoal.GoalType.Kill && task.state == Task.State.Active) {
                 task.taskGoal.EnemyKilled(enemyType);
             }
 
-            if (task.taskGoal.IsReached() && task.isActive) {
-                task.TaskComplete();
+            if (task.taskGoal.IsReached() && task.state != Task.State.TurnedIn) {
+                task.TaskGoalCompleted();
             }
         }
     }

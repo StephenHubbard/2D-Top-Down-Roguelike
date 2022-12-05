@@ -20,6 +20,7 @@ public class TaskGoal
     public Pickup.PickupType pickupType;
     public EnemyHealth.EnemyType enemyType;
 
+
     public bool IsReached() {
         return (currentAmount >= requiredAmount);
     }

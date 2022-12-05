@@ -6,27 +6,37 @@ using System;
 [System.Serializable]
 public class Task
 {
-    public bool isActive;
-    public bool isComplete = false;
+    public enum State {
+        Inactive, 
+        Active, 
+        Complete,
+        TurnedIn,
+    }
+
+    public State state;
+
     public string title;
-
     public TaskGoal taskGoal;
-    public TaskList taskList;
 
-    public event EventHandler OnTaskCompleted;
+    public Action OnTaskComplete;
 
-    private void Start() {
-        OnTaskCompleted += TaskCleanup;
+    public void CheckIfActive() {
+        foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
+        {
+            if (this.title == task.title) {
+                state = State.Active;
+            }
+        }
     }
 
-    public void TaskComplete() {
-        OnTaskCompleted?.Invoke(this, EventArgs.Empty);
+    public void TaskGoalCompleted() {
+        state = State.Complete;
+        OnTaskComplete?.Invoke();
     }
 
-    public void TaskCleanup(object sender, EventArgs e) {
-        Debug.Log("hit");
-        isActive = false;
-        isComplete = true;
-        taskList.CompleteTask();
+    public void TurnInTask() {
+        state = State.TurnedIn;
     }
+
+    
 }

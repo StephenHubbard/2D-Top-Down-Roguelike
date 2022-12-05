@@ -7,10 +7,11 @@ using TMPro;
 public class DialogueManager : Singleton<DialogueManager>
 {
 
-    [SerializeField] public GameObject dialogueBox;
-    [SerializeField] private GameObject tasksButtonsContainer;
     public bool justStarted;
 
+    [SerializeField] public GameObject dialogueBox;
+    [SerializeField] private GameObject tasksButtonsContainer;
+    [SerializeField] private GameObject completeQuestButton;
     [SerializeField] private int currentLine;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private TMP_Text nameText;
@@ -40,11 +41,17 @@ public class DialogueManager : Singleton<DialogueManager>
     }
 
     public void ShowTaskButtonsContainer(bool isTask) {
+        completeQuestButton.SetActive(false);
+        
         if (isTask) {
             tasksButtonsContainer.SetActive(true);
         } else {
             tasksButtonsContainer.SetActive(false);
         }
+    }
+
+    public void ShowCompleteTaskButton() {
+        completeQuestButton.SetActive(true);
     }
 
     public void CloseDialogueBox() {

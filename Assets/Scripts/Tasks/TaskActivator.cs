@@ -1,39 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class TaskActivator : MonoBehaviour
 {   
-    [SerializeField] private Task task;
-    [SerializeField] private GameObject exclamationPointTaskIcon;
-    [SerializeField] private GameObject questionMarkTaskIcon;
+    [SerializeField] public Task task;
+    [SerializeField] private GameObject exclamationPointIcon;
+    [SerializeField] private GameObject questionMarkIcon;
+    [SerializeField] private MonoBehaviour actionToTakeAfterTaskCompleted;
 
-    private TaskManager taskManager;
+    private DialogueActivator dialogueActivator;
 
     private void Awake() {
-        taskManager = FindObjectOfType<TaskManager>();
+        dialogueActivator = GetComponent<DialogueActivator>();
     }
 
     private void Start() {
-        foreach (var task in taskManager.ReturnAllActiveTasks())
-        {
-            if (this.task.title == task.title) {
-                ActiveTask();
-            }
+        task.OnTaskComplete += CompleteTask;
+    }
+
+    public void TaskIconOff() {
+        if (exclamationPointIcon && questionMarkIcon) {
+            exclamationPointIcon.SetActive(false);
+            questionMarkIcon.SetActive(false);
         }
     }
 
-
-    public void ActiveTask() {
-        task.isActive = true;
-        exclamationPointTaskIcon.SetActive(false);
+    public void QuestionMarkActive() {
+        if (questionMarkIcon) {
+            questionMarkIcon.SetActive(true);
+        }
     }
 
-    public Task ReturnTask() {
-        return task;
+    public void CompleteTask() {
+        foreach (var taskList in FindObjectsOfType<TaskList>())
+        {
+            taskList.CheckIfComplete();
+        }
+
+        QuestionMarkActive();
+        dialogueActivator.CheckDialogueState();
     }
 
-    public void ViewingTask() {
-        TaskManager.Instance.PotentialTaskToAdd(task, this);
+    public void TurnInTask() {
+        task.TurnInTask();
+        TaskIconOff();
+        dialogueActivator.CheckDialogueState();
+        ActionToTake();
+    }
+
+    public void ActionToTake() {
+        if (actionToTakeAfterTaskCompleted) {
+            (actionToTakeAfterTaskCompleted as ITaskComplete).TaskComplete();
+        }
     }
 }

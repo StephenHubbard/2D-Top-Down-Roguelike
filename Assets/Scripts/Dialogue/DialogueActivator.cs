@@ -2,19 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Put on gameobjects that can be toggled with opening the dialogue window (currently spacebar).  If isPerson isn't toggled true, the name box window will not appear.
 public class DialogueActivator : MonoBehaviour
 {
-    [SerializeField] private string[] lines;
+    public enum DialogueState {
+        NoTask,
+        PreTask,
+        DuringTask,
+        TaskComplete,
+        PostTask,
+    }
+
+    public DialogueState dialogueState;
+
+    [SerializeField] private string[] noTaskLines;
+    [SerializeField] private string[] preTaskLines;
+    [SerializeField] private string[] duringTaskLines;
+    [SerializeField] private string[] taskCompleteLine;
+    [SerializeField] private string[] postTaskLines;
     [SerializeField] private bool showNameBox;
-    [SerializeField] private bool isTask;
     [SerializeField] private string audioStringReference;
     [SerializeField] private GameObject dialogueBubble;
 
     private bool canActivate;
+    private TaskActivator taskActivator;
+
+    private void Awake() {
+        if (GetComponent<TaskActivator>()) {
+            taskActivator = GetComponent<TaskActivator>();
+        }
+    }
+
+    private void Start() {
+        if (GetComponent<TaskActivator>()) {
+            CheckDialogueState();
+        }
+    }
 
     public void HideDialogueBubble() {
         dialogueBubble.SetActive(false);
+    }
+
+    public void ShowDialogueBubble() {
+        dialogueBubble.SetActive(true);
     }
 
     private void Update() {
@@ -24,29 +53,89 @@ public class DialogueActivator : MonoBehaviour
     }
 
     private void OpenDialogue() {
-        if (GetComponent<TaskActivator>() && (GetComponent<TaskActivator>().ReturnTask().isComplete || GetComponent<TaskActivator>().ReturnTask().isActive)) { return; }
-
         if (canActivate) {
             if(!DialogueManager.Instance.dialogueBox.activeInHierarchy) {
-                if (audioStringReference != null) {
-                    AudioManager.Instance.Play(audioStringReference);
-                }
-                DialogueManager.Instance.ShowDialogue(lines, showNameBox);
-                if (isTask) {
-                    DialogueManager.Instance.ShowTaskButtonsContainer(isTask);
-                    GetComponent<TaskActivator>().ViewingTask();
-                }
                 ActiveWeapon.Instance.ReadingDialogueToggle(true);
+                WhichLinesToDisplay();
             } else {
                 DialogueManager.Instance.ContinueDialogue();
             }
         }
+    }
+
+    public void CheckDialogueState() {
+        foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
+        {
+            if (task.title == taskActivator.task.title) {
+                taskActivator.task.state = task.state;
+                break;
+            }
+        }
+
+        if (taskActivator.task.state == Task.State.Inactive) {
+            dialogueState = DialogueState.PreTask;
+        }
+
+        if (taskActivator.task.state == Task.State.Active) {
+            dialogueState = DialogueState.DuringTask;
+        }
+
+        if (taskActivator.task.state == Task.State.Complete) {
+            dialogueState = DialogueState.TaskComplete;
+            taskActivator.TaskIconOff();
+            taskActivator.QuestionMarkActive();
+        }
+
+        if (taskActivator.task.state == Task.State.TurnedIn) {
+            dialogueState = DialogueState.PostTask;
+            taskActivator.TaskIconOff();
+        }
+
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (GetComponent<TaskActivator>() && (GetComponent<TaskActivator>().ReturnTask().isComplete || GetComponent<TaskActivator>().ReturnTask().isActive)) { return; }
+    private void WhichLinesToDisplay() {
+        if (GetComponent<TaskActivator>()) {
+            TaskManager.Instance.SetPotentialTask(taskActivator.task, taskActivator);
+        }
 
+        switch (dialogueState)
+        {
+            default:
+            case DialogueState.NoTask:
+                DialogueManager.Instance.ShowDialogue(noTaskLines, showNameBox);
+                break;
+
+            case DialogueState.PreTask:
+                DialogueManager.Instance.ShowDialogue(preTaskLines, showNameBox);
+                break;
+
+            case DialogueState.DuringTask:
+                DialogueManager.Instance.ShowDialogue(duringTaskLines, showNameBox);
+                break;
+
+            case DialogueState.TaskComplete:
+                DialogueManager.Instance.ShowDialogue(taskCompleteLine, showNameBox);
+                break;
+
+            case DialogueState.PostTask:
+                DialogueManager.Instance.ShowDialogue(postTaskLines, showNameBox);
+                break;
+        }
+
+        if (dialogueState == DialogueState.PreTask) {
+            DialogueManager.Instance.ShowTaskButtonsContainer(true);
+        } else {
+            DialogueManager.Instance.ShowTaskButtonsContainer(false);
+        }
+
+        if (dialogueState == DialogueState.TaskComplete) {
+            DialogueManager.Instance.ShowCompleteTaskButton();
+        }
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other) {
         if(other.GetComponent<PlayerController>()) {
             dialogueBubble.SetActive(true);
             canActivate = true;

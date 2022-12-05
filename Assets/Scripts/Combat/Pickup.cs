@@ -57,12 +57,12 @@ public class Pickup : MonoBehaviour
     private void QuestUpdate() {
         foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
         {
-            if (task.taskGoal.goalType == TaskGoal.GoalType.Gather && task.isActive) {
+            if (task.taskGoal.goalType == TaskGoal.GoalType.Gather && task.state == Task.State.Active) {
                 task.taskGoal.ItemGathered(pickupType);
             }
 
-            if (task.taskGoal.IsReached() && task.isActive) {
-                task.TaskComplete();
+            if (task.taskGoal.IsReached() && task.state != Task.State.TurnedIn) {
+                task.TaskGoalCompleted();
             }
         }
     }
