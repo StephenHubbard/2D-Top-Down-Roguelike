@@ -864,7 +864,7 @@ MonoBehaviour:
   canMove: 1
   rb: {fileID: 1250551853333415457}
   moveSpeed: 4
-  dashSpeed: 4
+  dashSpeed: 5
   dashTime: 0.17
   myAnimator: {fileID: 1250551853333415458}
   mySpriteRenderer: {fileID: 1250551853333415459}

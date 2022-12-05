@@ -55,6 +55,7 @@ public class DialogueActivator : MonoBehaviour
     private void OpenDialogue() {
         if (canActivate) {
             if(!DialogueManager.Instance.dialogueBox.activeInHierarchy) {
+                AudioManager.Instance.Play(audioStringReference);
                 ActiveWeapon.Instance.ReadingDialogueToggle(true);
                 WhichLinesToDisplay();
             } else {
@@ -74,10 +75,12 @@ public class DialogueActivator : MonoBehaviour
 
         if (taskActivator.task.state == Task.State.Inactive) {
             dialogueState = DialogueState.PreTask;
+            taskActivator.ExclamationPointIconActive();
         }
 
         if (taskActivator.task.state == Task.State.Active) {
             dialogueState = DialogueState.DuringTask;
+            taskActivator.TaskIconOff();
         }
 
         if (taskActivator.task.state == Task.State.Complete) {

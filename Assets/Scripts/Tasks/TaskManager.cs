@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TaskManager : Singleton<TaskManager>
 {
     [SerializeField] private GameObject taskListPrefab;
-    [SerializeField] private GameObject activeQuestsContainer;
+    [SerializeField] private GameObject activeTasksContainer;
 
     public List<Task> allTasks = new List<Task>();
     private int currentAmountOfTasks = 0;
@@ -16,8 +16,12 @@ public class TaskManager : Singleton<TaskManager>
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
-            activeQuestsContainer.SetActive(!activeQuestsContainer.activeInHierarchy);
+            ToggleActiveTasksContainer();
         }   
+    }
+
+    public void ToggleActiveTasksContainer() {
+        activeTasksContainer.SetActive(!activeTasksContainer.activeInHierarchy);
     }
 
     public void SetPotentialTask(Task task, TaskActivator taskActivator) {
@@ -26,6 +30,7 @@ public class TaskManager : Singleton<TaskManager>
     }
 
     public void AcceptButton() {
+        AudioManager.Instance.Play("UI Click");
         if (currentAmountOfTasks < 4) {
             DialogueManager.Instance.CloseDialogueBox();
             AddTaskToActiveTasks();
@@ -37,10 +42,12 @@ public class TaskManager : Singleton<TaskManager>
     }
 
     public void DeclineButton() {
+        AudioManager.Instance.Play("UI Click");
         DialogueManager.Instance.CloseDialogueBox();
     }
 
     public void CompleteTaskButton() {
+        AudioManager.Instance.Play("UI Click");
         foreach (var task in allTasks)
         {
             if (task.title == currentTaskActivator.task.title) {
@@ -66,8 +73,8 @@ public class TaskManager : Singleton<TaskManager>
 
     private void AddTaskToActiveTasks() {
         allTasks.Add(currentTask);
-        TaskList newTaskList = Instantiate(taskListPrefab, activeQuestsContainer.transform.position, transform.rotation).GetComponent<TaskList>();
-        newTaskList.transform.SetParent(activeQuestsContainer.transform);
+        TaskList newTaskList = Instantiate(taskListPrefab, activeTasksContainer.transform.position, transform.rotation).GetComponent<TaskList>();
+        newTaskList.transform.SetParent(activeTasksContainer.transform);
         newTaskList.SetTask(currentTask);
         currentAmountOfTasks++;
     }

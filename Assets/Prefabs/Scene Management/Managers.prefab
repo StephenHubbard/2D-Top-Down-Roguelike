@@ -196,7 +196,7 @@ MonoBehaviour:
     clips:
     - {fileID: 8300000, guid: fb3bead5eb08ac3458c61e98fb8af279, type: 3}
     loop: 0
-    volume: 2
+    volume: 1.667
     pitch: 1
     source: {fileID: 0}
   - audioType: 0
@@ -205,6 +205,22 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 203973b9eaa71104e8259aada6b97c69, type: 3}
     loop: 0
     volume: 1.833
+    pitch: 1
+    source: {fileID: 0}
+  - audioType: 0
+    name: UI Click
+    clips:
+    - {fileID: 8300000, guid: 9af57665d16651a4a957de3052f73641, type: 3}
+    loop: 0
+    volume: 0.667
+    pitch: 1
+    source: {fileID: 0}
+  - audioType: 0
+    name: Bulletin Board
+    clips:
+    - {fileID: 8300000, guid: d81b8536e1ad92d44a3b6d2b00fdeef1, type: 3}
+    loop: 0
+    volume: 1.41
     pitch: 1
     source: {fileID: 0}
 --- !u!1 &6601286160202635784
@@ -339,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a011a5c7a573d2540ac19906aabaff53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldText: {fileID: 0}
 --- !u!1 &6601286161335302315
 GameObject:
   m_ObjectHideFlags: 0

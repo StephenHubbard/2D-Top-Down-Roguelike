@@ -7,17 +7,39 @@ using UnityEngine.UI;
 public class TaskActivator : MonoBehaviour
 {   
     [SerializeField] public Task task;
-    [SerializeField] private GameObject exclamationPointIcon;
-    [SerializeField] private GameObject questionMarkIcon;
     [SerializeField] private MonoBehaviour actionToTakeAfterTaskCompleted;
 
+    private GameObject exclamationPointIcon;
+    private GameObject questionMarkIcon;
     private DialogueActivator dialogueActivator;
 
     private void Awake() {
         dialogueActivator = GetComponent<DialogueActivator>();
+        SetIcons();
     }
 
     private void Start() {
+        DetectTaskState();
+
+        if (task.state == Task.State.TurnedIn) {
+            ActionToTake();
+        }
+    }
+
+    private void SetIcons() {
+        exclamationPointIcon = transform.GetChild(0).gameObject;
+        questionMarkIcon = transform.GetChild(1).gameObject;
+    }
+
+    private void DetectTaskState() {
+        foreach (var task in TaskManager.Instance.ReturnAllActiveTasks())
+        {
+            if (this.task.title == task.title) {
+                task.OnTaskComplete += CompleteTask;
+                return;
+            } 
+        } 
+
         task.OnTaskComplete += CompleteTask;
     }
 
@@ -25,6 +47,12 @@ public class TaskActivator : MonoBehaviour
         if (exclamationPointIcon && questionMarkIcon) {
             exclamationPointIcon.SetActive(false);
             questionMarkIcon.SetActive(false);
+        }
+    }
+
+    public void ExclamationPointIconActive() {
+        if (exclamationPointIcon) {
+            exclamationPointIcon.SetActive(true);
         }
     }
 
